@@ -10,6 +10,8 @@ import {
 	ALERT_FADE,
 } from './actions';
 
+// import fetchVimeo from '../fetches/fetchVimeo';
+
 // --------------- STATE ------------------
 const initialState = {
 	movies: [],
@@ -89,7 +91,56 @@ export const MoviesProvider = ({ children }) => {
 
 	// ======  HANDLE VIMEO FETCH ======
 
-	const fetchVimeo = movieInput => {};
+	const extractIdVimeo = movieInput => {
+		return movieInput.substring(movieInput.length - 9, movieInput.length);
+	};
+
+	const fetchVimeo = movieInput => {
+		const movieId = extractIdVimeo(movieInput);
+
+		const fetchUrl = `https://vimeo.com/api/oembed.json?url=https%3A//vimeo.com/${movieId}`;
+
+		const movieUrl = `https://www.vimeo.com/${movieId}`;
+		dispatch({ type: GET_MOVIE_BEGIN });
+		fetch(fetchUrl)
+			.then(response => response.json())
+			.then(data => {
+				// if (!data.items.length) return dispatch({ type: GET_MOVIE_ERROR });
+				console.log(data);
+				addMovieVimeo(data, 'Vimeo', movieUrl);
+				dispatch({ type: GET_MOVIE_SUCCESS });
+			})
+			.catch(error => {
+				console.log(error);
+				dispatch({ type: GET_MOVIE_ERROR });
+			});
+	};
+
+	const addMovieVimeo = (
+		data,
+		channel,
+		movie_url,
+		likes = 'undefined',
+		views = 'undefined'
+	) => {
+		// destructure response
+		const { title, thumbnail_url: image_url, upload_date: publishedAt } = data;
+		console.log(title);
+
+		// form a new item from response
+		const newItem = {
+			id: new Date().getTime(),
+			title,
+			channel,
+			movie_url,
+			image_url,
+			publishedAt,
+			likes,
+			views,
+		};
+
+		dispatch({ type: ADD_MOVIE, payload: newItem });
+	};
 
 	// alert auto-fade feature
 	// ======== BUG ============
