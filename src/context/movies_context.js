@@ -2,13 +2,7 @@
 import React, { useContext, useEffect, useReducer } from 'react';
 import reducer from './movies_reducer';
 
-import {
-	ADD_MOVIE,
-	GET_MOVIE_BEGIN,
-	GET_MOVIE_SUCCESS,
-	GET_MOVIE_ERROR,
-	ALERT_FADE,
-} from './actions';
+import { ADD_MOVIE, GET_MOVIE_BEGIN, GET_MOVIE_END } from './actions';
 
 import { VIMEO, YOUTUBE } from './variables';
 import fetchItem from '../fetches/fetchItem';
@@ -30,24 +24,24 @@ export const MoviesProvider = ({ children }) => {
 	const [state, dispatch] = useReducer(reducer, initialState);
 
 	const addItem = (movieInput, provider) => {
-		fetchItem(movieInput, provider).then(newItem =>
-			dispatch({ type: ADD_MOVIE, payload: { newItem } })
-		);
+		dispatch({ type: GET_MOVIE_BEGIN });
+		fetchItem(movieInput, provider)
+			.then(newItem => {
+				dispatch({ type: ADD_MOVIE, payload: { newItem } });
+				setAlert(true, 'Movie successfully added to the list!', 'success');
+			})
+			.catch(error => {
+				setAlert(true, "I'm sorry, adding the movie failed!", 'danger');
+			});
 	};
 
-	// alert auto-fade feature
-	// ======== BUG ============
-	// let alertTO = () => {};
-	// useEffect(() => {
-	// 	setTimeout(() => {
-	// 		alertTO = dispatch({ type: ALERT_FADE });
-	// 	}, 5000);
-	// 	return clearTimeout(alertTO);
-	// }, [state.alert.show]);
+	const setAlert = (show = false, msg = '', type = 'success') => {
+		dispatch({ type: GET_MOVIE_END, payload: { show, msg, type } });
+	};
 
 	// ====== RETURN ======
 	return (
-		<MoviesContext.Provider value={{ ...state, addItem }}>
+		<MoviesContext.Provider value={{ ...state, addItem, setAlert }}>
 			{children}
 		</MoviesContext.Provider>
 	);

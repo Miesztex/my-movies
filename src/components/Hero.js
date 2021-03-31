@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
 	Button,
 	Form,
@@ -14,9 +14,21 @@ import { useMoviesContext } from '../context/movies_context';
 import { VIMEO, YOUTUBE } from '../context/variables';
 
 const Hero = () => {
-	const { addItem, alert } = useMoviesContext();
+	const { addItem, alert, setAlert, movies } = useMoviesContext();
 	const [movieInput, setMovieInput] = useState('');
 	const [provider, setProvider] = useState(YOUTUBE);
+
+	// alert aut-fade effect
+	useEffect(() => {
+		let alertFadeTO;
+		if (!alert.show) return;
+		alertFadeTO = setTimeout(() => {
+			setAlert();
+		}, 5000);
+		return () => {
+			clearTimeout(alertFadeTO);
+		};
+	}, [alert]);
 
 	const handleSubmit = e => {
 		e.preventDefault();
