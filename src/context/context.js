@@ -13,41 +13,45 @@ import {
 // --------------- STATE ------------------
 const initialState = {
 	movies: [],
-	fav_products: [],
-	grid_view: false,
-	sort: 'name-a',
-	per_page: 10,
+	channel: '',
+	vimeo_movies: [],
 	alert: { show: false, type: 'success', msg: '' },
 	isLoading: false,
 };
 
-// https://www.googleapis.com/youtube/v3/videos?id=7lCDEYXw3mM&key=YOUR_API_KEY
-//      &part=snippet,contentDetails,statistics,status
 // --------------- CONTEXT ------------------
-
 const MoviesContext = React.createContext();
 
+// --------------- PROVIDER -------------
 export const MoviesProvider = ({ children }) => {
 	const [state, dispatch] = useReducer(reducer, initialState);
 
-	// ====== FETCH FUNCTION ======
-	const extractId = movieInput => {
+	// ======  HANDLE YT FETCH ======
+	const fetchMovie = (movieInput, channel) => {
+		if (channel === 'YouTube') fetchYT(movieInput);
+		else if (channel === 'Vimeo') fetchVimeo(movieInput);
+	};
+
+	const extractIdYT = movieInput => {
 		// we assume that id has always 11 characters and no other params are included in url
 		return movieInput.substring(movieInput.length - 11, movieInput.length);
 	};
 
-	const fetchItem = movieInput => {
-		const movieId = extractId(movieInput);
+	const fetchYT = movieInput => {
+		const movieId = extractIdYT(movieInput);
 
-		const url = `https://www.googleapis.com/youtube/v3/videos?id=${movieId}&key=${process.env.REACT_APP_GOOGLE_API_KEY}
+		const fetchUrl = `https://www.googleapis.com/youtube/v3/videos?id=${movieId}&key=${process.env.REACT_APP_GOOGLE_API_KEY}
 		&part=snippet,contentDetails,statistics,status`;
 
+		const movieUrl = `https://www.youtube.com/watch?v=${movieId}`;
+
 		dispatch({ type: GET_MOVIE_BEGIN });
-		fetch(url)
+		fetch(fetchUrl)
 			.then(response => response.json())
 			.then(data => {
 				if (!data.items.length) return dispatch({ type: GET_MOVIE_ERROR });
-				addItem(data);
+				// 3a
+				addMovieYT(data, 'YouTube', movieUrl);
 				dispatch({ type: GET_MOVIE_SUCCESS });
 			})
 			.catch(error => {
@@ -55,8 +59,7 @@ export const MoviesProvider = ({ children }) => {
 			});
 	};
 
-	// ====== ACTION HANDLERS ======
-	const addItem = data => {
+	const addMovieYT = (data, channel, movie_url) => {
 		// destructure response
 		const {
 			snippet: {
@@ -73,6 +76,8 @@ export const MoviesProvider = ({ children }) => {
 		const newItem = {
 			id: new Date().getTime(),
 			title,
+			channel,
+			movie_url,
 			image_url,
 			publishedAt,
 			likes,
@@ -82,23 +87,29 @@ export const MoviesProvider = ({ children }) => {
 		dispatch({ type: ADD_MOVIE, payload: newItem });
 	};
 
+	// ======  HANDLE VIMEO FETCH ======
+
+	const fetchVimeo = movieInput => {};
+
 	// alert auto-fade feature
-	// ======= BUG =======
+	// ======== BUG ============
+	let alertTO = () => {};
 	useEffect(() => {
 		setTimeout(() => {
-			const alertTO = dispatch({ type: ALERT_FADE });
+			alertTO = dispatch({ type: ALERT_FADE });
 		}, 5000);
+		return clearTimeout(alertTO);
 	}, [state.alert.show]);
 
 	// ====== RETURN ======
 	return (
-		<MoviesContext.Provider value={{ ...state, fetchItem }}>
+		<MoviesContext.Provider value={{ ...state, fetchMovie }}>
 			{children}
 		</MoviesContext.Provider>
 	);
 };
 
-// make sure use
+// CUSTOM CONTEXT HOOK
 export const useGlobalContext = () => {
 	return useContext(MoviesContext);
 };
