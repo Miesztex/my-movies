@@ -6,9 +6,13 @@ import reportWebVitals from './reportWebVitals';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './index.css';
 
+import { MoviesProvider } from './context/context';
+
 ReactDOM.render(
 	<React.StrictMode>
-		<App />
+		<MoviesProvider>
+			<App />
+		</MoviesProvider>
 	</React.StrictMode>,
 	document.getElementById('root')
 );

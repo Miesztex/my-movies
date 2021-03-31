@@ -1,0 +1,15 @@
+export const ADD_MOVIE = 'ADD_MOVIE';
+export const SET_AS_FAV = 'SET_FAV';
+export const REMOVE_MOVIE = 'REMOVE_MOVIE';
+export const CLEAR = 'CLEAR';
+export const SET_TILEVIEW = 'SET_TILEVIEW';
+export const SET_LISTVIEW = 'SET_LISTVIEW';
+export const UPDATE_SORT = 'UPDATE_SORT';
+export const SORT_PRODUCTS = 'SORT_PRODUCTS';
+export const DISPLAY_ALL = 'DISPLAY_ALL';
+export const DISPLAY_FAV = 'DISPLAY_FAV';
+export const SET_PAGINATION = 'SET_PAGINATION';
+export const GET_MOVIE_BEGIN = 'GET_MOVIE_BEGIN';
+export const GET_MOVIE_ERROR = 'GET_MOVIE_ERROR';
+export const GET_MOVIE_SUCCESS = 'GET_MOVIE_SUCCESS';
+export const ALERT_FADE = 'ALERT_FADE';
