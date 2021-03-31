@@ -11,16 +11,18 @@ import {
 } from 'reactstrap';
 import { useGlobalContext } from '../context/context';
 
+import { VIMEO, YOUTUBE } from '../context/variables';
+
 const Hero = () => {
-	const { fetchMovie, alert } = useGlobalContext();
-	const [movieId, setMovieId] = useState('');
-	const [channel, setChannel] = useState('YouTube');
+	const { addItem, alert } = useGlobalContext();
+	const [movieInput, setMovieInput] = useState('');
+	const [provider, setProvider] = useState(YOUTUBE);
 
 	const handleSubmit = e => {
 		e.preventDefault();
-		fetchMovie(movieId, channel);
-		setMovieId('');
-		setChannel('YouTube');
+		addItem(movieInput, provider);
+		setMovieInput('');
+		setProvider(YOUTUBE);
 	};
 
 	return (
@@ -39,19 +41,19 @@ const Hero = () => {
 								name='url'
 								id='url'
 								placeholder="Your movie's URL"
-								value={movieId}
-								onChange={e => setMovieId(e.target.value)}
+								value={movieInput}
+								onChange={e => setMovieInput(e.target.value)}
 							/>
 						</FormGroup>
 						<FormGroup>
 							<Input
 								type='select'
 								name='select'
-								id='exampleSelect'
-								value={channel}
-								onChange={e => setChannel(e.target.value)}>
-								<option value='YouTube'>YouTube</option>
-								<option value='Vimeo'>Vimeo</option>
+								id='select'
+								value={provider}
+								onChange={e => setProvider(e.target.value)}>
+								<option value={YOUTUBE}>YouTube</option>
+								<option value={VIMEO}>Vimeo</option>
 							</Input>
 						</FormGroup>
 					</div>
