@@ -36,6 +36,7 @@ export const formItemYT = (data, provider, movieUrl) => {
 		publishedAt,
 		likes,
 		views,
+		favourite: false,
 	};
 	return newItem;
 };

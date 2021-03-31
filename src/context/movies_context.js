@@ -1,6 +1,6 @@
 // IMPORTS
 import React, { useContext, useEffect, useReducer } from 'react';
-import reducer from './reducer';
+import reducer from './movies_reducer';
 
 import {
 	ADD_MOVIE,
@@ -10,7 +10,7 @@ import {
 	ALERT_FADE,
 } from './actions';
 
-import { VIMEO, YOUTUBE } from '../context/variables';
+import { VIMEO, YOUTUBE } from './variables';
 import fetchItem from '../fetches/fetchItem';
 
 // --------------- STATE ------------------
@@ -54,6 +54,6 @@ export const MoviesProvider = ({ children }) => {
 };
 
 // CUSTOM CONTEXT HOOK
-export const useGlobalContext = () => {
+export const useMoviesContext = () => {
 	return useContext(MoviesContext);
 };

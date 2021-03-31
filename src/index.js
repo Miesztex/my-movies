@@ -6,12 +6,15 @@ import reportWebVitals from './reportWebVitals';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './index.css';
 
-import { MoviesProvider } from './context/context';
+import { MoviesProvider } from './context/movies_context';
+import { FilterProvider } from './context/filter_context';
 
 ReactDOM.render(
 	<React.StrictMode>
 		<MoviesProvider>
-			<App />
+			<FilterProvider>
+				<App />
+			</FilterProvider>
 		</MoviesProvider>
 	</React.StrictMode>,
 	document.getElementById('root')

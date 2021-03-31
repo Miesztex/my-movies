@@ -9,12 +9,12 @@ import {
 	Row,
 	Alert,
 } from 'reactstrap';
-import { useGlobalContext } from '../context/context';
+import { useMoviesContext } from '../context/movies_context';
 
 import { VIMEO, YOUTUBE } from '../context/variables';
 
 const Hero = () => {
-	const { addItem, alert } = useGlobalContext();
+	const { addItem, alert } = useMoviesContext();
 	const [movieInput, setMovieInput] = useState('');
 	const [provider, setProvider] = useState(YOUTUBE);
 

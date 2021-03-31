@@ -27,6 +27,7 @@ export const formItemVimeo = (data, provider, movieUrl) => {
 		publishedAt,
 		likes,
 		views,
+		favourite: false,
 	};
 
 	return newItem;
