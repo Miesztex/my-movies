@@ -6,6 +6,7 @@ import {
 	SORT_MOVIES,
 	UPDATE_FILTERS,
 	UPDATE_SORT,
+<<<<<<< HEAD
 	UPDATE_PROVIDER,
 	UPDATE_PAGINATION,
 	PAGINATE,
@@ -14,6 +15,12 @@ import {
 import { paginate } from '../utils/paginate';
 
 import { NAME_AZ, NAME_ZA, OLD, NEW, itemsNumberPerPage } from './variables';
+=======
+	UPDATE_ROUTE,
+} from './actions';
+
+import { NAME_AZ, NAME_ZA, OLD, NEW, YOUTUBE, VIMEO } from './variables';
+>>>>>>> f900cc573f8035707776cbcbbc7b2623c90755ea
 
 const filter_reducer = (state, action) => {
 	console.log(action);
@@ -62,11 +69,19 @@ const filter_reducer = (state, action) => {
 			const {
 				all_movies,
 				filters: { favourite },
+<<<<<<< HEAD
 				provider,
 			} = state;
 			let filtered = [...all_movies]; // reset template
 			// handle rendered provider
 			if (provider !== 'all') {
+=======
+				route: { provider },
+			} = state;
+			let filtered = [...all_movies]; // reset template
+			// handle rendered provider
+			if (provider) {
+>>>>>>> f900cc573f8035707776cbcbbc7b2623c90755ea
 				filtered = filtered.filter(
 					item => item.provider === provider.toUpperCase()
 				);
@@ -83,6 +98,7 @@ const filter_reducer = (state, action) => {
 				...state,
 				filters: { ...state.filters, [name]: checked },
 			};
+<<<<<<< HEAD
 		case UPDATE_PROVIDER:
 			return { ...state, provider: action.payload };
 		case UPDATE_PAGINATION:
@@ -102,6 +118,11 @@ const filter_reducer = (state, action) => {
 		case PAGINATE:
 			const newPages = paginate(state.filtered_movies, itemsNumberPerPage);
 			return { ...state, pages: newPages };
+=======
+		case UPDATE_ROUTE:
+			return { ...state, route: action.payload };
+
+>>>>>>> f900cc573f8035707776cbcbbc7b2623c90755ea
 		default:
 			throw new Error(`No Matching "${action.type}" - action type`);
 	}
