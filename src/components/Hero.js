@@ -8,13 +8,14 @@ import {
 	FormText,
 	Row,
 	Alert,
+	Spinner,
 } from 'reactstrap';
 import { useMoviesContext } from '../context/movies_context';
 
 import { VIMEO, YOUTUBE } from '../context/variables';
 
 const Hero = () => {
-	const { addItem, alert, setAlert, movies } = useMoviesContext();
+	const { addItem, alert, setAlert, isLoading } = useMoviesContext();
 	const [movieInput, setMovieInput] = useState('');
 	const [provider, setProvider] = useState(YOUTUBE);
 
@@ -45,7 +46,9 @@ const Hero = () => {
 				</h5>
 				<h4 className='text-uppercase mt-4 text-center'>Just enter the URL</h4>
 				{alert.show && <Alert color={alert.type}>{alert.msg}</Alert>}
-				<Form className='align-self-stretch mt-5' onSubmit={handleSubmit}>
+				<Form
+					className='align-self-stretch mt-5 d-flex flex-column'
+					onSubmit={handleSubmit}>
 					<div className='input'>
 						<FormGroup>
 							<Input
@@ -70,9 +73,17 @@ const Hero = () => {
 						</FormGroup>
 					</div>
 					<hr />
-					<Button size='lg' type='submit' color='primary'>
-						Add
-					</Button>
+					{isLoading ? (
+						<Spinner color='primary' className='align-self-center' />
+					) : (
+						<Button
+							size='lg'
+							type='submit'
+							color='primary'
+							className='align-self-center'>
+							Add
+						</Button>
+					)}
 				</Form>
 			</div>
 		</main>

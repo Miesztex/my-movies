@@ -7,6 +7,10 @@ import {
 	GET_MOVIE_BEGIN,
 	GET_MOVIE_END,
 	INIT_MOVIES,
+	REMOVE_MOVIE,
+	TOGGLE_FAV,
+	CLEAR_ALL,
+	SET_ALERT,
 } from './actions';
 
 import { VIMEO, YOUTUBE } from './variables';
@@ -38,21 +42,40 @@ export const MoviesProvider = ({ children }) => {
 		dispatch({ type: GET_MOVIE_BEGIN });
 		fetchItem(movieInput, provider)
 			.then(newItem => {
-				dispatch({ type: ADD_MOVIE, payload: { newItem } });
+				dispatch({ type: ADD_MOVIE, payload: newItem });
+				dispatch({ type: GET_MOVIE_END });
 				setAlert(true, 'Movie successfully added to the list!', 'success');
 			})
 			.catch(error => {
+				dispatch({ type: GET_MOVIE_END });
 				setAlert(true, "I'm sorry, adding the movie failed!", 'danger');
 			});
 	};
 
 	const setAlert = (show = false, msg = '', type = 'success') => {
-		dispatch({ type: GET_MOVIE_END, payload: { show, msg, type } });
+		dispatch({ type: SET_ALERT, payload: { show, msg, type } });
 	};
+
+	const removeMovie = id => {
+		console.log(id);
+		dispatch({ type: REMOVE_MOVIE, payload: id });
+	};
+
+	const clearMovies = () => dispatch({ type: CLEAR_ALL });
+
+	const toggleFavourites = id => dispatch({ type: TOGGLE_FAV, payload: id });
 
 	// ====== RETURN ======
 	return (
-		<MoviesContext.Provider value={{ ...state, addItem, setAlert }}>
+		<MoviesContext.Provider
+			value={{
+				...state,
+				addItem,
+				setAlert,
+				removeMovie,
+				toggleFavourites,
+				clearMovies,
+			}}>
 			{children}
 		</MoviesContext.Provider>
 	);

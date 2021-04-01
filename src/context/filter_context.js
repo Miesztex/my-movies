@@ -3,12 +3,13 @@ import React, { useEffect, useContext, useReducer } from 'react';
 import {
 	UPDATE_FILTERS,
 	LOAD_MOVIES,
-	SET_LISTVIEW,
-	SET_TILEVIEW,
+	SET_VIEW,
 	UPDATE_SORT,
 	FILTER_MOVIES,
 	SORT_MOVIES,
 } from './actions';
+
+import { NAME_AZ, NAME_ZA, OLD, NEW } from './variables';
 
 import reducer from './filter_reducer';
 import { useMoviesContext } from './movies_context';
@@ -18,8 +19,8 @@ const initialState = {
 	all_movies: [],
 	filtered_movies: [],
 	list_view: true,
-	sort: 'name-a',
-	filter_fav: false,
+	sort: NAME_AZ,
+	filters: { fav: false },
 	modal_open: false,
 	current_movie: null,
 };
@@ -35,18 +36,16 @@ export const FilterProvider = ({ children }) => {
 	// fetch state.movies into filter's state
 	const { movies } = useMoviesContext();
 	useEffect(() => {
-		console.log(movies);
 		dispatch({ type: LOAD_MOVIES, payload: movies });
 	}, [movies]);
 
 	// --- view ---
-	const setGridView = () => dispatch({ type: SET_TILEVIEW });
-	const setListView = () => dispatch({ type: SET_LISTVIEW });
+	const setListView = e =>
+		dispatch({ type: SET_VIEW, payload: e.target.value });
 
 	// --- sort ---
 	const updateSort = e => {
-		const { value } = e.target;
-		dispatch({ type: UPDATE_SORT, payload: { value } });
+		dispatch({ type: UPDATE_SORT, payload: e.target.value });
 	};
 	useEffect(() => {
 		dispatch({ type: FILTER_MOVIES });
@@ -54,14 +53,16 @@ export const FilterProvider = ({ children }) => {
 	}, [movies, state.sort, state.filters]);
 
 	// --- filter ---
-	const updateFilters = e => {};
+	const updateFilters = e => {
+		const { name, checked } = e.target;
+		dispatch({ type: UPDATE_FILTERS, payload: { name, checked } });
+	};
 
 	// --- provider ---
 	return (
 		<FilterContext.Provider
 			value={{
 				...state,
-				setGridView,
 				setListView,
 				updateSort,
 				updateFilters,

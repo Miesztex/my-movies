@@ -1,9 +1,9 @@
 export const ADD_MOVIE = 'ADD_MOVIE';
-export const SET_AS_FAV = 'SET_FAV';
+export const TOGGLE_FAV = 'TOGGLE_FAV';
 export const REMOVE_MOVIE = 'REMOVE_MOVIE';
-export const CLEAR = 'CLEAR';
-export const SET_TILEVIEW = 'SET_TILEVIEW';
-export const SET_LISTVIEW = 'SET_LISTVIEW';
+export const CLEAR_ALL = 'CLEAR_ALL';
+export const SET_ALERT = 'SET_ALERT';
+export const SET_VIEW = 'SET_VIEW';
 export const UPDATE_SORT = 'UPDATE_SORT';
 export const SORT_MOVIES = 'SORT_MOVIES';
 export const DISPLAY_ALL = 'DISPLAY_ALL';
