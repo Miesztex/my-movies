@@ -3,11 +3,14 @@ import {
 	GET_MOVIE_BEGIN,
 	GET_MOVIE_END,
 	ALERT_FADE,
+	INIT_MOVIES,
 } from './actions';
 
 const reducer = (state, action) => {
 	console.log(action);
 	switch (action.type) {
+		case INIT_MOVIES:
+			return { ...state, movies: action.payload };
 		case ADD_MOVIE:
 			return { ...state, movies: [...state.movies, action.payload] };
 		case GET_MOVIE_BEGIN:

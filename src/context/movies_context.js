@@ -2,10 +2,16 @@
 import React, { useContext, useEffect, useReducer } from 'react';
 import reducer from './movies_reducer';
 
-import { ADD_MOVIE, GET_MOVIE_BEGIN, GET_MOVIE_END } from './actions';
+import {
+	ADD_MOVIE,
+	GET_MOVIE_BEGIN,
+	GET_MOVIE_END,
+	INIT_MOVIES,
+} from './actions';
 
 import { VIMEO, YOUTUBE } from './variables';
 import fetchItem from '../fetches/fetchItem';
+import demo_data from './demo_data';
 
 // --------------- STATE ------------------
 const initialState = {
@@ -22,6 +28,11 @@ const MoviesContext = React.createContext();
 // --------------- PROVIDER -------------
 export const MoviesProvider = ({ children }) => {
 	const [state, dispatch] = useReducer(reducer, initialState);
+
+	useEffect(() => {
+		if (state.movies.length) return;
+		dispatch({ type: INIT_MOVIES, payload: demo_data });
+	}, []);
 
 	const addItem = (movieInput, provider) => {
 		dispatch({ type: GET_MOVIE_BEGIN });

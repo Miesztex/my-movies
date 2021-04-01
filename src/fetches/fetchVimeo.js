@@ -29,6 +29,6 @@ export const formItemVimeo = (data, provider, movieUrl) => {
 		views,
 		favourite: false,
 	};
-
+	console.log(newItem);
 	return newItem;
 };

@@ -35,7 +35,8 @@ export const FilterProvider = ({ children }) => {
 	// fetch state.movies into filter's state
 	const { movies } = useMoviesContext();
 	useEffect(() => {
-		dispatch({ type: LOAD_MOVIES, payload: { movies } });
+		console.log(movies);
+		dispatch({ type: LOAD_MOVIES, payload: movies });
 	}, [movies]);
 
 	// --- view ---

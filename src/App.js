@@ -4,6 +4,7 @@ import { Home, About, Movies, SingleMovie, Error } from './pages/index';
 
 import { Navbar, Footer } from './components/index';
 import { Container, Row } from 'reactstrap';
+import MoviesList from './components/MoviesList';
 
 function App() {
 	return (
@@ -15,12 +16,12 @@ function App() {
 						<Home />
 					</Route>
 					<Route exact path='/movies'>
-						<Movies />
+						<About />
 					</Route>
+					<Route path='/movies/:filter' children={<MoviesList />} />
 					<Route exact path='/about'>
 						<About />
 					</Route>
-					<Route path='/movies/:id' children={<SingleMovie />} />
 					<Route path='*'>
 						<Error />
 					</Route>

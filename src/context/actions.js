@@ -15,3 +15,4 @@ export const ALERT_FADE = 'ALERT_FADE';
 export const UPDATE_FILTERS = 'UPDATE_FILTERS';
 export const FILTER_MOVIES = 'FILTER_MOVIES';
 export const LOAD_MOVIES = 'LOAD_MOVIES';
+export const INIT_MOVIES = 'INIT_MOVIES';
