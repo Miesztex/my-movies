@@ -19,3 +19,5 @@ export const FILTER_MOVIES = 'FILTER_MOVIES';
 export const LOAD_MOVIES = 'LOAD_MOVIES';
 export const INIT_MOVIES = 'INIT_MOVIES';
 export const PAGINATE = 'PAGINATE';
+export const UPDATE_CURRENT_MOVIE = 'UPDATE_CURRENT_MOVIE';
+export const SET_MODAL = 'SET_MODAL';

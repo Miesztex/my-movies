@@ -10,6 +10,8 @@ import {
 	SORT_MOVIES,
 	PAGINATE,
 	UPDATE_PAGINATION,
+	UPDATE_CURRENT_MOVIE,
+	SET_MODAL,
 } from './actions';
 
 import { NAME_AZ, NAME_ZA, OLD, NEW } from './variables';
@@ -25,7 +27,7 @@ const initialState = {
 	list_view: true,
 	sort: NAME_AZ,
 	filters: { fav: false },
-	modal_open: false,
+	modal_open: true,
 	current_movie: null,
 	provider: '',
 	pagination: 1,
@@ -73,6 +75,10 @@ export const FilterProvider = ({ children }) => {
 		dispatch({ type: UPDATE_PAGINATION, payload: action });
 	};
 
+	const updateModal = () => dispatch({ type: SET_MODAL });
+	const updateCurrentMovie = movieUrl =>
+		dispatch({ UPDATE_CURRENT_MOVIE, payload: movieUrl });
+
 	// --- provider ---
 	return (
 		<FilterContext.Provider
@@ -83,6 +89,8 @@ export const FilterProvider = ({ children }) => {
 				updateFilters,
 				updateProvider,
 				updatePagination,
+				updateCurrentMovie,
+				updateModal,
 			}}>
 			{children}
 		</FilterContext.Provider>

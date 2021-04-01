@@ -9,6 +9,8 @@ import {
 	UPDATE_PROVIDER,
 	UPDATE_PAGINATION,
 	PAGINATE,
+	UPDATE_CURRENT_MOVIE,
+	SET_MODAL,
 } from './actions';
 
 import { paginate } from '../utils/paginate';
@@ -102,6 +104,10 @@ const filter_reducer = (state, action) => {
 		case PAGINATE:
 			const newPages = paginate(state.filtered_movies, itemsNumberPerPage);
 			return { ...state, pages: newPages };
+		case SET_MODAL:
+			return { ...state, modal_open: !state.modal_open };
+		case UPDATE_CURRENT_MOVIE:
+			return { ...state, current_movie: action.payload };
 		default:
 			throw new Error(`No Matching "${action.type}" - action type`);
 	}

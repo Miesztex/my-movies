@@ -14,6 +14,7 @@ const MoviesList = () => {
 		updateProvider,
 		pages,
 		pagination,
+		updateCurrentMovie,
 	} = useFilterContext();
 
 	const { toggleFavourites, removeMovie } = useMoviesContext();
@@ -35,6 +36,7 @@ const MoviesList = () => {
 				movies={currentPageItems}
 				toggleFavourites={toggleFavourites}
 				removeMovie={removeMovie}
+				updateCurrentMovie={updateCurrentMovie}
 			/>
 		);
 	}
@@ -43,6 +45,7 @@ const MoviesList = () => {
 			movies={currentPageItems}
 			toggleFavourites={toggleFavourites}
 			removeMovie={removeMovie}
+			updateCurrentMovie={updateCurrentMovie}
 		/>
 	);
 };
