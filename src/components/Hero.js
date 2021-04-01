@@ -86,17 +86,15 @@ const Hero = () => {
 							{alert.msg}
 						</Alert>
 					</div>
-					{isLoading ? (
-						<Spinner color='primary' className='align-self-center' />
-					) : (
-						<Button
-							size='lg'
-							type='submit'
-							color='primary'
-							className='align-self-center'>
-							Add
-						</Button>
-					)}
+					<div className='spinner-container align-self-center'>
+						{isLoading ? (
+							<Spinner color='primary' className='align-self-center' />
+						) : (
+							<Button size='lg' type='submit' color='primary'>
+								Add
+							</Button>
+						)}
+					</div>
 				</Form>
 			</Container>
 		</main>

@@ -149,3 +149,7 @@ LIST
 .pagination {
   margin-bottom: 0;
 }
+
+.spinner-container {
+  height: 72px;
+}

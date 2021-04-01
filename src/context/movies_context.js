@@ -13,7 +13,6 @@ import {
 	SET_ALERT,
 } from './actions';
 
-import { VIMEO, YOUTUBE } from './variables';
 import fetchItem from '../utils/fetchItem';
 import demo_data from './demo_data';
 
@@ -46,6 +45,7 @@ export const MoviesProvider = ({ children }) => {
 		fetchItem(movieInput, provider)
 			.then(newItem => {
 				if (isPresent(newItem)) {
+					dispatch({ type: GET_MOVIE_END });
 					return setAlert(
 						true,
 						'The movie is already in your list!',
@@ -54,11 +54,12 @@ export const MoviesProvider = ({ children }) => {
 				}
 				dispatch({ type: ADD_MOVIE, payload: newItem });
 				setAlert(true, 'Movie successfully added to the list!', 'success');
+				dispatch({ type: GET_MOVIE_END });
 			})
 			.catch(error => {
 				setAlert(true, "I'm sorry, adding the movie failed!", 'danger');
+				dispatch({ type: GET_MOVIE_END });
 			});
-		dispatch({ type: GET_MOVIE_END });
 	};
 
 	const setAlert = (show = false, msg = '', type = 'success') => {
