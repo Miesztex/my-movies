@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import {
 	Navbar,
 	NavbarBrand,
 	NavItem,
 	Nav,
-	NavLink,
+	// NavLink,
 	Dropdown,
 	DropdownItem,
 	DropdownToggle,
@@ -26,27 +27,27 @@ const NavbarComponent = () => {
 			<Collapse isOpen={!collapsed} navbar>
 				<Nav className='mr-auto' navbar>
 					<NavItem>
-						<NavLink href='/'>Add new</NavLink>
+						<Link to='/'>Add new</Link>
 					</NavItem>
 					<Dropdown nav isOpen={dropdownOpen} toggle={toggle}>
 						<DropdownToggle nav caret>
-							Movies
+							<Link to='/movies'>Movies</Link>
 						</DropdownToggle>
 						<DropdownMenu>
 							<DropdownItem>
-								<NavLink href='movies'>All</NavLink>
+								<Link to='/movies'>All</Link>
 							</DropdownItem>
 							<DropdownItem divider />
 							<DropdownItem>
-								<NavLink href='movies'>Youtube</NavLink>
+								<Link to='/movies/youtube'>YouTube</Link>
 							</DropdownItem>
 							<DropdownItem>
-								<NavLink href='movies'>Vimeo</NavLink>
+								<Link to='/movies/vimeo'>Vimeo</Link>
 							</DropdownItem>
 						</DropdownMenu>
 					</Dropdown>
 					<NavItem>
-						<NavLink href='/'>About</NavLink>
+						<Link to='/about'>About</Link>
 					</NavItem>
 				</Nav>
 			</Collapse>

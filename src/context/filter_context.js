@@ -2,6 +2,7 @@ import React, { useEffect, useContext, useReducer } from 'react';
 
 import {
 	UPDATE_FILTERS,
+	UPDATE_ROUTE,
 	LOAD_MOVIES,
 	SET_VIEW,
 	UPDATE_SORT,
@@ -23,6 +24,10 @@ const initialState = {
 	filters: { fav: false },
 	modal_open: false,
 	current_movie: null,
+	route: {
+		provider: '',
+		pagination: 1,
+	},
 };
 
 // ------ CONTEXT ------
@@ -50,12 +55,16 @@ export const FilterProvider = ({ children }) => {
 	useEffect(() => {
 		dispatch({ type: FILTER_MOVIES });
 		dispatch({ type: SORT_MOVIES });
-	}, [movies, state.sort, state.filters]);
+	}, [movies, state.sort, state.filters, state.route]);
 
 	// --- filter ---
 	const updateFilters = e => {
 		const { name, checked } = e.target;
 		dispatch({ type: UPDATE_FILTERS, payload: { name, checked } });
+	};
+
+	const updateRoute = (provider, pagination) => {
+		dispatch({ type: UPDATE_ROUTE, payload: { provider, pagination } });
 	};
 
 	// --- provider ---
@@ -66,6 +75,7 @@ export const FilterProvider = ({ children }) => {
 				setListView,
 				updateSort,
 				updateFilters,
+				updateRoute,
 			}}>
 			{children}
 		</FilterContext.Provider>

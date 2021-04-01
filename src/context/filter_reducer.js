@@ -1,13 +1,14 @@
 import {
 	LOAD_MOVIES,
 	SET_VIEW,
-	UPDATE_SORT,
+	FILTER_MOVIES,
 	SORT_MOVIES,
 	UPDATE_FILTERS,
-	FILTER_MOVIES,
+	UPDATE_SORT,
+	UPDATE_ROUTE,
 } from './actions';
 
-import { NAME_AZ, NAME_ZA, OLD, NEW } from './variables';
+import { NAME_AZ, NAME_ZA, OLD, NEW, YOUTUBE, VIMEO } from './variables';
 
 const filter_reducer = (state, action) => {
 	console.log(action);
@@ -28,7 +29,6 @@ const filter_reducer = (state, action) => {
 			return { ...state, sort: action.payload };
 		case SORT_MOVIES:
 			const { sort, filtered_movies } = state;
-			console.log(filtered_movies);
 			let sortedMovies = [...filtered_movies];
 			// ---------- sort functions ----------
 			if (sort === OLD) {
@@ -53,11 +53,20 @@ const filter_reducer = (state, action) => {
 			const {
 				all_movies,
 				filters: { favourite },
+				route: { provider },
 			} = state;
 			let filtered = [...all_movies]; // reset template
+			// handle rendered provider
+			if (provider) {
+				filtered = filtered.filter(
+					item => item.provider === provider.toUpperCase()
+				);
+			}
+			// handle filters
 			if (favourite) {
 				filtered = filtered.filter(item => item.favourite);
 			}
+
 			return { ...state, filtered_movies: filtered };
 		case UPDATE_FILTERS:
 			const { name, checked } = action.payload;
@@ -66,6 +75,8 @@ const filter_reducer = (state, action) => {
 				...state,
 				filters: { ...state.filters, [name]: checked },
 			};
+		case UPDATE_ROUTE:
+			return { ...state, route: action.payload };
 
 		default:
 			throw new Error(`No Matching "${action.type}" - action type`);

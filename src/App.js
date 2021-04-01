@@ -17,7 +17,7 @@ function App() {
 					<Route exact path='/movies'>
 						<Movies />
 					</Route>
-					<Route path='/movies/:filter' children={<Movies />} />
+					<Route path='/movies/:provider/:pagination' children={<Movies />} />
 					<Route exact path='/about'>
 						<About />
 					</Route>
