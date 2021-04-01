@@ -38,18 +38,27 @@ export const MoviesProvider = ({ children }) => {
 		dispatch({ type: INIT_MOVIES, payload: demo_data });
 	}, []);
 
+	const isPresent = item =>
+		state.movies.findIndex(movie => movie.movieUrl === item.movieUrl) !== -1;
+
 	const addItem = (movieInput, provider) => {
 		dispatch({ type: GET_MOVIE_BEGIN });
 		fetchItem(movieInput, provider)
 			.then(newItem => {
+				if (isPresent(newItem)) {
+					return setAlert(
+						true,
+						'The movie is already in your list!',
+						'warning'
+					);
+				}
 				dispatch({ type: ADD_MOVIE, payload: newItem });
-				dispatch({ type: GET_MOVIE_END });
 				setAlert(true, 'Movie successfully added to the list!', 'success');
 			})
 			.catch(error => {
-				dispatch({ type: GET_MOVIE_END });
 				setAlert(true, "I'm sorry, adding the movie failed!", 'danger');
 			});
+		dispatch({ type: GET_MOVIE_END });
 	};
 
 	const setAlert = (show = false, msg = '', type = 'success') => {
