@@ -5,6 +5,7 @@ export const CLEAR_ALL = 'CLEAR_ALL';
 export const SET_ALERT = 'SET_ALERT';
 export const SET_VIEW = 'SET_VIEW';
 export const UPDATE_SORT = 'UPDATE_SORT';
+export const UPDATE_ROUTE = 'UPDATE_ROUTE';
 export const SORT_MOVIES = 'SORT_MOVIES';
 export const DISPLAY_ALL = 'DISPLAY_ALL';
 export const DISPLAY_FAV = 'DISPLAY_FAV';
