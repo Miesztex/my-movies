@@ -45,9 +45,9 @@ const Hero = () => {
 					Keep all your favorites movie in one place!
 				</h5>
 				<h4 className='text-uppercase mt-4 text-center'>Just enter the URL</h4>
-				{alert.show && <Alert color={alert.type}>{alert.msg}</Alert>}
+				{/* === ALERT === */}
 				<Form
-					className='align-self-stretch mt-5 d-flex flex-column'
+					className='align-self-stretch mt-5 d-flex flex-column position-relative flex-basis mb-5'
 					onSubmit={handleSubmit}>
 					<div className='input'>
 						<FormGroup>
@@ -72,7 +72,14 @@ const Hero = () => {
 							</Input>
 						</FormGroup>
 					</div>
-					<hr />
+					<div className='alert-container' style={{ flexBasis: '80px' }}>
+						<Alert
+							color={alert.type}
+							isOpen={alert.show}
+							className='text-center'>
+							{alert.msg}
+						</Alert>
+					</div>
 					{isLoading ? (
 						<Spinner color='primary' className='align-self-center' />
 					) : (
