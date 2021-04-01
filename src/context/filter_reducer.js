@@ -99,7 +99,7 @@ const filter_reducer = (state, action) => {
 				if (newPagination < 1) {
 					newPagination = state.pages.length;
 				}
-			}
+			} else if (action.payload === 'reset') newPagination = 1;
 			return { ...state, pagination: newPagination };
 		case PAGINATE:
 			const newPages = paginate(state.filtered_movies, itemsNumberPerPage);

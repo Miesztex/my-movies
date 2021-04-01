@@ -27,7 +27,7 @@ const initialState = {
 	list_view: true,
 	sort: NAME_AZ,
 	filters: { fav: false },
-	modal_open: true,
+	modal_open: false,
 	current_movie: null,
 	provider: '',
 	pagination: 1,
@@ -59,7 +59,8 @@ export const FilterProvider = ({ children }) => {
 		dispatch({ type: FILTER_MOVIES });
 		dispatch({ type: SORT_MOVIES });
 		dispatch({ type: PAGINATE });
-	}, [movies, state.sort, state.filters, state.route]);
+		dispatch({ type: UPDATE_PAGINATION, payload: 'reset' });
+	}, [movies, state.sort, state.filters]);
 
 	// --- filter ---
 	const updateFilters = e => {
@@ -71,13 +72,14 @@ export const FilterProvider = ({ children }) => {
 		dispatch({ type: UPDATE_PROVIDER, payload: provider });
 	};
 	const updatePagination = action => {
-		console.log(action);
 		dispatch({ type: UPDATE_PAGINATION, payload: action });
 	};
 
 	const updateModal = () => dispatch({ type: SET_MODAL });
-	const updateCurrentMovie = movieUrl =>
-		dispatch({ UPDATE_CURRENT_MOVIE, payload: movieUrl });
+	const updateCurrentMovie = movieUrl => {
+		dispatch({ type: UPDATE_CURRENT_MOVIE, payload: movieUrl });
+		updateModal();
+	};
 
 	// --- provider ---
 	return (

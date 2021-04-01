@@ -7,7 +7,12 @@ import { FiChevronRight } from 'react-icons/fi';
 
 import MovieModal from './MovieModal';
 
-const ListView = ({ movies, removeMovie, toggleFavourites }) => {
+const ListView = ({
+	movies,
+	removeMovie,
+	toggleFavourites,
+	updateCurrentMovie,
+}) => {
 	return (
 		<>
 			<MovieModal />
@@ -17,8 +22,6 @@ const ListView = ({ movies, removeMovie, toggleFavourites }) => {
 						title,
 						publishedAt,
 						provider,
-						movieUrl,
-						imageUrl,
 						id,
 						likes,
 						views,
@@ -60,7 +63,12 @@ const ListView = ({ movies, removeMovie, toggleFavourites }) => {
 							{/* --- buttons --- */}
 							<List type='inline' className='list-btns'>
 								<ListInlineItem>
-									<Button size='sm' className='movie-action-btn'>
+									<Button
+										size='sm'
+										className='movie-action-btn'
+										onClick={() => {
+											updateCurrentMovie(item);
+										}}>
 										Play{' '}
 										<span>
 											<FaPlay />
