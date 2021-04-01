@@ -5,3 +5,5 @@ export const NAME_AZ = 'NAME_AZ';
 export const NAME_ZA = 'NAME_ZA';
 export const OLD = 'OLD';
 export const NEW = 'NEW';
+
+export const itemsNumberPerPage = 2;

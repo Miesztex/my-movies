@@ -9,7 +9,11 @@ import {
 	Form,
 	Input,
 	CustomInput,
+	InputGroupAddon,
+	InputGroupText,
+	InputGroup,
 } from 'reactstrap';
+import Pagination from './Pagination';
 import { useFilterContext } from '../context/filter_context';
 import { useMoviesContext } from '../context/movies_context';
 import { NAME_AZ, NAME_ZA, OLD, NEW } from '../context/variables';
@@ -22,6 +26,9 @@ const Filters = () => {
 		updateFilters,
 		updateSort,
 		setListView,
+		pages,
+		updatePagination,
+		pagination,
 	} = useFilterContext();
 	const { clearMovies } = useMoviesContext();
 
@@ -29,30 +36,27 @@ const Filters = () => {
 
 	const handleToggle = () => setFilterOpen(!filterOpen);
 	return (
-		<div>
-			<Button
-				color='primary'
-				onClick={handleToggle}
-				style={{ marginBottom: '1rem' }}>
-				Options
-				{/* R icons  */}
-			</Button>
+		<div className='collapse-container'>
+			<div className='btn-container'>
+				<Button color='primary' onClick={handleToggle}>
+					Options
+					{/* R icons  */}
+				</Button>
+				<Pagination
+					updatePagination={updatePagination}
+					pagination={pagination}
+					pages={pages}
+				/>
+				<Button onClick={clearMovies}>Remove all</Button>
+			</div>
 			<Collapse isOpen={filterOpen}>
 				<Card>
 					<CardBody>
 						<Form>
-							{/* <FormGroup inline>
-								<Label >View: </Label>
-								<div>
-									<Label for='list' className={`${}`}> List</Label>
-									<CustomInput type='radio' id='list' name='list' hidden />
-									<Label for='tiles'> Tiles</Label>
-									<CustomInput type='radio' id='tiles' name='tiles' hidden />
-								</div>
-							</FormGroup> */}
-
-							<FormGroup>
-								<Label inline>View: </Label>
+							<InputGroup>
+								<InputGroupAddon addonType='prepend'>
+									<InputGroupText className='px-4'> View: </InputGroupText>
+								</InputGroupAddon>
 								<Input
 									type='select'
 									value={list_view}
@@ -61,16 +65,20 @@ const Filters = () => {
 									<option value={true}>List view</option>
 									<option value={false}>Grid view</option>
 								</Input>
-							</FormGroup>
-							<FormGroup>
-								<Label inline>Sort by: </Label>
+							</InputGroup>
+							<br />
+							<InputGroup>
+								<InputGroupAddon addonType='prepend'>
+									<InputGroupText className='px-3'> Sort by: </InputGroupText>
+								</InputGroupAddon>
 								<Input type='select' value={sort} onChange={updateSort} inline>
 									<option value={NAME_AZ}>A-Z</option>
 									<option value={NAME_ZA}>Z-A</option>
 									<option value={OLD}>Oldest</option>
 									<option value={NEW}>Newest</option>
 								</Input>
-							</FormGroup>
+							</InputGroup>
+							<br />
 							<FormGroup>
 								<div>
 									<CustomInput
@@ -83,7 +91,6 @@ const Filters = () => {
 									/>
 								</div>
 							</FormGroup>
-							<Button onClick={clearMovies}>Clear all movies</Button>
 						</Form>
 					</CardBody>
 				</Card>

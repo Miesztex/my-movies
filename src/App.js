@@ -14,7 +14,7 @@ function App() {
 					<Route exact path='/'>
 						<Home />
 					</Route>
-					<Route path='/movies/:provider/:pagination?' children={<Movies />} />
+					<Route path='/movies/:provider' children={<Movies />} />
 					<Route exact path='/about'>
 						<About />
 					</Route>

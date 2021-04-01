@@ -1,3 +1,7 @@
+.container {
+  min-height: 80vh;
+}
+
 p {
   margin-bottom: .3rem;
 }
@@ -6,6 +10,142 @@ span {
   font-style: italic;
 }
 
-/* .italic {
-  font-style: italic;
-} */
+
+/* 
+====================
+COLLAPSE
+=====================
+*/
+@media only screen and (min-width: 768px) {
+
+  .custom-toggler {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    flex-basis: 100%;
+  }
+
+  .custom-toggler li {
+    margin-right: .7rem;
+  }
+}
+
+.collapse-container {
+  max-width: var(--breakpoint-md);
+  margin: 0 auto;
+  width: 100%;
+  padding: 1rem 0;
+}
+
+
+.btn-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+
+  padding: 1rem 0;
+}
+
+.btn-container button {
+  margin-right: 0.5rem;
+}
+
+/* 
+====================
+LIST
+=====================
+*/
+.tiles-container {
+  display: grid;
+  gap: 2rem 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .tiles-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1170px) {
+  .tiles-container {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.tile-btn-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+/* 
+====================
+LIST
+=====================
+*/
+.movie-list {
+  width: 100%;
+}
+
+.list-btns button {
+  margin-right: .5rem;
+}
+
+@media only screen and (min-width: 768px) {
+
+  .list-group-item {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .list-btns {
+    display: flex;
+    flex-direction: column;
+
+    justify-content: flex-start;
+
+  }
+
+  .list-btns button {
+    width: 100%;
+    margin-bottom: .3rem;
+  }
+
+  .list-btns li {
+    width: 100%;
+  }
+
+}
+
+.input-form {
+  display: flex;
+  align-self: stretch;
+  flex-direction: column;
+}
+
+.github-icon {
+  transform: translateY(-3px);
+}
+
+.movie-action-btn {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.movie-action-btn span {
+  transform: translate(4px, -3px);
+  padding-right: 2px;
+  height: 1.2rem
+}
+
+.movie-action-btn span .active {
+  color: palevioletred;
+}
+
+/* BS styling reset */
+.pagination {
+  margin-bottom: 0;
+}

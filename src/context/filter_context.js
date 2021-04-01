@@ -2,12 +2,14 @@ import React, { useEffect, useContext, useReducer } from 'react';
 
 import {
 	UPDATE_FILTERS,
-	UPDATE_ROUTE,
+	UPDATE_PROVIDER,
 	LOAD_MOVIES,
 	SET_VIEW,
 	UPDATE_SORT,
 	FILTER_MOVIES,
 	SORT_MOVIES,
+	PAGINATE,
+	UPDATE_PAGINATION,
 } from './actions';
 
 import { NAME_AZ, NAME_ZA, OLD, NEW } from './variables';
@@ -19,15 +21,14 @@ import { useMoviesContext } from './movies_context';
 const initialState = {
 	all_movies: [],
 	filtered_movies: [],
+	pages: [],
 	list_view: true,
 	sort: NAME_AZ,
 	filters: { fav: false },
 	modal_open: false,
 	current_movie: null,
-	route: {
-		provider: '',
-		pagination: 1,
-	},
+	provider: '',
+	pagination: 1,
 };
 
 // ------ CONTEXT ------
@@ -55,6 +56,7 @@ export const FilterProvider = ({ children }) => {
 	useEffect(() => {
 		dispatch({ type: FILTER_MOVIES });
 		dispatch({ type: SORT_MOVIES });
+		dispatch({ type: PAGINATE });
 	}, [movies, state.sort, state.filters, state.route]);
 
 	// --- filter ---
@@ -63,8 +65,12 @@ export const FilterProvider = ({ children }) => {
 		dispatch({ type: UPDATE_FILTERS, payload: { name, checked } });
 	};
 
-	const updateRoute = (provider, pagination) => {
-		dispatch({ type: UPDATE_ROUTE, payload: { provider, pagination } });
+	const updateProvider = provider => {
+		dispatch({ type: UPDATE_PROVIDER, payload: provider });
+	};
+	const updatePagination = action => {
+		console.log(action);
+		dispatch({ type: UPDATE_PAGINATION, payload: action });
 	};
 
 	// --- provider ---
@@ -75,7 +81,8 @@ export const FilterProvider = ({ children }) => {
 				setListView,
 				updateSort,
 				updateFilters,
-				updateRoute,
+				updateProvider,
+				updatePagination,
 			}}>
 			{children}
 		</FilterContext.Provider>

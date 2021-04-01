@@ -13,6 +13,7 @@ import {
 	NavbarToggler,
 	Collapse,
 } from 'reactstrap';
+import { useFilterContext } from '../context/filter_context';
 
 const NavbarComponent = () => {
 	const [collapsed, setCollapsed] = useState(true);
@@ -20,27 +21,51 @@ const NavbarComponent = () => {
 	const [dropdownOpen, setDropdownOpen] = useState(false);
 	const toggle = () => setDropdownOpen(!dropdownOpen);
 
+	const { updateProvider } = useFilterContext();
+
 	return (
 		<Navbar color='light' light expand='md'>
-			<NavbarBrand href='/'>My movies</NavbarBrand>
+			<NavbarBrand href='#'>
+				<Link to='/'>My movies</Link>
+			</NavbarBrand>
 			<NavbarToggler onClick={toggleNavbar} className='mr-2' />
 			<Collapse isOpen={!collapsed} navbar>
-				<Nav className='mr-auto' navbar>
+				<Nav className='mr-auto custom-toggler' navbar>
 					<NavItem>
 						<Link to='/'>Add new</Link>
 					</NavItem>
 					<Dropdown nav isOpen={dropdownOpen} toggle={toggle}>
-						<DropdownToggle nav caret>
-							<Link to='/movies/all/1'>Movies</Link>
-						</DropdownToggle>
-						<DropdownMenu>
-							<DropdownItem>
-								<Link to='/movies/youtube/1'>YouTube</Link>
-							</DropdownItem>
-							<DropdownItem>
-								<Link to='/movies/vimeo/1'>Vimeo</Link>
-							</DropdownItem>
-						</DropdownMenu>
+						<NavItem>
+							<DropdownToggle nav caret>
+								<Link
+									to='/movies/all'
+									onClick={() => {
+										updateProvider('all');
+									}}>
+									Movies
+								</Link>
+							</DropdownToggle>
+							<DropdownMenu>
+								<DropdownItem>
+									<Link
+										to='/movies/youtube'
+										onClick={() => {
+											updateProvider('youtube');
+										}}>
+										YouTube
+									</Link>
+								</DropdownItem>
+								<DropdownItem>
+									<Link
+										to='/movies/vimeo'
+										onClick={() => {
+											updateProvider('vimeo');
+										}}>
+										Vimeo
+									</Link>
+								</DropdownItem>
+							</DropdownMenu>
+						</NavItem>
 					</Dropdown>
 					<NavItem>
 						<Link to='/about'>About</Link>

@@ -7,12 +7,10 @@ const MoviesListPage = () => {
 	return (
 		<Container>
 			<Row>
-				<Col>
-					<Filters md='2' />
-				</Col>
-				<Col md='10'>
-					<MoviesList />
-				</Col>
+				<Filters />
+			</Row>
+			<Row>
+				<MoviesList />
 			</Row>
 		</Container>
 	);

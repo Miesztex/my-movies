@@ -14,7 +14,7 @@ import {
 } from './actions';
 
 import { VIMEO, YOUTUBE } from './variables';
-import fetchItem from '../fetches/fetchItem';
+import fetchItem from '../utils/fetchItem';
 import demo_data from './demo_data';
 
 // --------------- STATE ------------------

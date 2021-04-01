@@ -11,20 +11,28 @@ const MoviesList = () => {
 	const {
 		filtered_movies: movies,
 		list_view,
-		updateRoute,
+		updateProvider,
+		pages,
+		pagination,
 	} = useFilterContext();
+
 	const { toggleFavourites, removeMovie } = useMoviesContext();
-	const { provider, pagination } = useParams();
+
+	// set currently rendered page from param to state
+	const { provider } = useParams();
+
 	useEffect(() => {
-		updateRoute(provider, pagination);
-	}, [provider, pagination]);
+		updateProvider(provider);
+	}, [provider]);
+
+	const currentPageItems = pages[pagination - 1];
 	if (movies.length < 1) {
-		return <h4>Sorry, no movies found...</h4>;
+		return <h4 className='text-center'>Sorry, no movies found...</h4>;
 	}
 	if (!list_view) {
 		return (
 			<TilesView
-				movies={movies}
+				movies={currentPageItems}
 				toggleFavourites={toggleFavourites}
 				removeMovie={removeMovie}
 			/>
@@ -32,7 +40,7 @@ const MoviesList = () => {
 	}
 	return (
 		<ListView
-			movies={movies}
+			movies={currentPageItems}
 			toggleFavourites={toggleFavourites}
 			removeMovie={removeMovie}
 		/>

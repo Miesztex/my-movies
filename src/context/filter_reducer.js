@@ -1,3 +1,4 @@
+import moment from 'moment';
 import {
 	LOAD_MOVIES,
 	SET_VIEW,
@@ -5,10 +6,14 @@ import {
 	SORT_MOVIES,
 	UPDATE_FILTERS,
 	UPDATE_SORT,
-	UPDATE_ROUTE,
+	UPDATE_PROVIDER,
+	UPDATE_PAGINATION,
+	PAGINATE,
 } from './actions';
 
-import { NAME_AZ, NAME_ZA, OLD, NEW, YOUTUBE, VIMEO } from './variables';
+import { paginate } from '../utils/paginate';
+
+import { NAME_AZ, NAME_ZA, OLD, NEW, itemsNumberPerPage } from './variables';
 
 const filter_reducer = (state, action) => {
 	console.log(action);
@@ -30,12 +35,16 @@ const filter_reducer = (state, action) => {
 		case SORT_MOVIES:
 			const { sort, filtered_movies } = state;
 			let sortedMovies = [...filtered_movies];
-			// ---------- sort functions ----------
+			// ========- sort functions ===========
 			if (sort === OLD) {
-				sortedMovies = sortedMovies.sort((a, b) => b.price - a.price);
+				sortedMovies = sortedMovies.sort((a, b) =>
+					moment(a.publishedAt).diff(b.publishedAt)
+				);
 			}
 			if (sort === NEW) {
-				sortedMovies = sortedMovies.sort((a, b) => a.price - b.price);
+				sortedMovies = sortedMovies.sort((a, b) =>
+					moment(b.publishedAt).diff(a.publishedAt)
+				);
 			}
 			if (sort === NAME_AZ) {
 				sortedMovies = sortedMovies.sort((a, b) =>
@@ -53,7 +62,7 @@ const filter_reducer = (state, action) => {
 			const {
 				all_movies,
 				filters: { favourite },
-				route: { provider },
+				provider,
 			} = state;
 			let filtered = [...all_movies]; // reset template
 			// handle rendered provider
@@ -70,14 +79,29 @@ const filter_reducer = (state, action) => {
 			return { ...state, filtered_movies: filtered };
 		case UPDATE_FILTERS:
 			const { name, checked } = action.payload;
-			console.log(name);
 			return {
 				...state,
 				filters: { ...state.filters, [name]: checked },
 			};
-		case UPDATE_ROUTE:
-			return { ...state, route: action.payload };
-
+		case UPDATE_PROVIDER:
+			return { ...state, provider: action.payload };
+		case UPDATE_PAGINATION:
+			let newPagination = state.pagination;
+			if (action.payload === 'next') {
+				newPagination += 1;
+				if (newPagination > state.pages.length) {
+					newPagination = 1;
+				}
+			} else if (action.payload === 'prev') {
+				newPagination -= 1;
+				if (newPagination < 1) {
+					newPagination = state.pages.length;
+				}
+			}
+			return { ...state, pagination: newPagination };
+		case PAGINATE:
+			const newPages = paginate(state.filtered_movies, itemsNumberPerPage);
+			return { ...state, pages: newPages };
 		default:
 			throw new Error(`No Matching "${action.type}" - action type`);
 	}

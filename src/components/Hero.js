@@ -9,6 +9,10 @@ import {
 	Row,
 	Alert,
 	Spinner,
+	InputGroup,
+	InputGroupAddon,
+	InputGroupText,
+	Container,
 } from 'reactstrap';
 import { useMoviesContext } from '../context/movies_context';
 
@@ -40,37 +44,39 @@ const Hero = () => {
 
 	return (
 		<main>
-			<div className='container d-flex flex-column align-items-center justify-content-center mt-5'>
+			<Container className='container d-flex flex-column align-items-center justify-content-center mt-5'>
 				<h5 className='text-center'>
 					Keep all your favorites movie in one place!
 				</h5>
-				<h4 className='text-uppercase mt-4 text-center'>Just enter the URL</h4>
+				<h4 className='text-uppercase mt-4 text-center'>
+					Just enter the URL or ID
+				</h4>
 				{/* === ALERT === */}
-				<Form
-					className='align-self-stretch mt-5 d-flex flex-column position-relative flex-basis mb-5'
-					onSubmit={handleSubmit}>
+				<Form className='input-form mt-4' onSubmit={handleSubmit}>
 					<div className='input'>
-						<FormGroup>
+						<InputGroup>
 							<Input
 								type='text'
 								name='url'
 								id='url'
-								placeholder="Your movie's URL"
+								placeholder="Your movie's URL or ID"
 								value={movieInput}
 								onChange={e => setMovieInput(e.target.value)}
 							/>
-						</FormGroup>
-						<FormGroup>
-							<Input
-								type='select'
-								name='select'
-								id='select'
-								value={provider}
-								onChange={e => setProvider(e.target.value)}>
-								<option value={YOUTUBE}>YouTube</option>
-								<option value={VIMEO}>Vimeo</option>
-							</Input>
-						</FormGroup>
+							<InputGroupAddon addonType='append'>
+								<Input
+									type='select'
+									name='select'
+									id='select'
+									value={provider}
+									onChange={e => setProvider(e.target.value)}>
+									<option value={YOUTUBE}>YouTube</option>
+									<option value={VIMEO}>Vimeo</option>
+								</Input>
+							</InputGroupAddon>
+						</InputGroup>
+						<FormGroup></FormGroup>
+						<FormGroup></FormGroup>
 					</div>
 					<div className='alert-container' style={{ flexBasis: '80px' }}>
 						<Alert
@@ -92,7 +98,7 @@ const Hero = () => {
 						</Button>
 					)}
 				</Form>
-			</div>
+			</Container>
 		</main>
 	);
 };
