@@ -11,12 +11,16 @@ const Footer = () => {
 						Created by{' '}
 						<a
 							href='https://www.facebook.com/mieszko.krzyzanski/'
-							target='_blank'>
+							target='_blank'
+							rel='noreferrer'>
 							Mieszko Krzyżański{' '}
 							<span>
 								<FaFacebookF className='fb-icon' />
 							</span>
-							<a href='https://github.com/Miesztex' target='_blank'>
+							<a
+								href='https://github.com/Miesztex'
+								rel='noreferrer'
+								target='_blank '>
 								<FaGithubSquare className='github-icon' />
 							</a>
 						</a>
@@ -28,7 +32,10 @@ const Footer = () => {
 					<p className='text-center'>
 						<small>
 							Project created exclusively for{' '}
-							<a href='https://digimonkeys.com' target='_blank'>
+							<a
+								href='https://digimonkeys.com'
+								rel='noreferrer'
+								target='_blank'>
 								digimonkeys'{' '}
 							</a>
 							job interview assignment.
