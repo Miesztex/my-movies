@@ -146,6 +146,43 @@ TILES(GRID) VIEW
   height: 100%;
 }
 
+
+.movieImg-backdrop {
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.movieImg-img {
+  height: 100%;
+  transform: scale(1.05);
+  transition: all .5s;
+  backface-visibility: hidden;
+}
+
+.movieImg-icon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 4rem;
+  color: var(--light);
+
+  transition: all .5s;
+  opacity: 0;
+  backface-visibility: hidden;
+}
+
+.movieImg-backdrop:hover>.movieImg-icon {
+  opacity: .8;
+}
+
+.movieImg-backdrop:hover>.movieImg-img {
+  transform: scale(1);
+  filter: blur(1px) brightness(60%);
+}
+
+
 /* 
 ====================
 LIST VIEW

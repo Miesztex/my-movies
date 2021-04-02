@@ -23,7 +23,7 @@ const initialState = {
 	all_movies: [], // movies to render
 	filtered_movies: [],
 	pages: [],
-	list_view: true, // filters & sorts
+	list_view: false, // filters & sorts
 	sort: NAME_AZ,
 	filters: { fav: false },
 	modal_open: false, // movie player info

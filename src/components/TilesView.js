@@ -49,7 +49,23 @@ const TilesView = props => {
 					{/*  */}
 					{providerIcon(provider)}
 					{/*  */}
-					<CardImg top width='100%' src={imageUrl} alt={title} />
+					<div
+						className='movieImg-backdrop'
+						onClick={() => {
+							updateCurrentMovie(item);
+						}}>
+						<CardImg
+							top
+							width='100%'
+							src={imageUrl}
+							alt={title}
+							onClick={() => {
+								updateCurrentMovie(item);
+							}}
+							className='movieImg-img'
+						/>
+						<FaPlay className='movieImg-icon' />
+					</div>
 					<CardTitle tag='h6' className='mt-3'>
 						{title}
 					</CardTitle>
