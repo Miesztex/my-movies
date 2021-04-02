@@ -29,7 +29,6 @@ const filter_reducer = (state, action) => {
 			// boolean from string
 			let view = action.payload;
 			view = view === 'true';
-			console.log(view);
 			return { ...state, list_view: view };
 		// ================================
 		// SORT

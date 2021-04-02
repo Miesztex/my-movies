@@ -85,7 +85,6 @@ export const MoviesProvider = ({ children }) => {
 
 	// handle movie card buttons affecting original state
 	const removeMovie = id => {
-		console.log(id);
 		dispatch({ type: REMOVE_MOVIE, payload: id });
 	};
 

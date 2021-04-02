@@ -26,7 +26,6 @@ export const formItemYT = (data, provider, movieUrl) => {
 		},
 		statistics: { likeCount: likes, viewCount: views },
 	} = data.items[0];
-	console.log(data);
 
 	const newItem = {
 		id: new Date().getTime(),
@@ -39,6 +38,5 @@ export const formItemYT = (data, provider, movieUrl) => {
 		views,
 		favourite: false,
 	};
-	console.log(newItem);
 	return newItem;
 };
