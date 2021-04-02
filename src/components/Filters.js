@@ -31,6 +31,7 @@ const Filters = () => {
 		pagination,
 		per_page,
 		updatePerPage,
+		filtered_movies,
 	} = useFilterContext();
 	const { clearMovies } = useMoviesContext();
 
@@ -75,10 +76,14 @@ const Filters = () => {
 									<InputGroupText className='px-2'> Per page: </InputGroupText>
 								</InputGroupAddon>
 								<Input
-									type='number'
+									type='select'
 									value={per_page}
 									onChange={updatePerPage}
-									inline></Input>
+									inline>
+									<option value='5'>5</option>
+									<option value='10'>10</option>
+									<option value='15'>15</option>
+								</Input>
 							</InputGroup>
 							<br />
 							<InputGroup>
