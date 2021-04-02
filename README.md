@@ -1,70 +1,36 @@
-# Getting Started with Create React App
+# MyMovies
+App MyMovies allows you to keep all your favourite movies in one place.
+All you need to do is to enter your movie's basic data: URL or ID.
+- Please note, that at this moment the url has to be finished by an ID, with any following strings the app won't work.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Methodology
+### How does it work?
+1. URL or ID are subject of extracting ID and proper API request is being formed.
+2. Response is formed into proper movie object and saved in MoviesContext state as part of movies array.
+3. Movies are being shared to FilterContext state as all_movies.
+4. Every input change (on /movies page) cause FilterContext state change and init filter and sort of movies saved as filtered_movies.
+5. Then, filtered movies are paginated and saved as an array of arrays with maximum length of selected per_page property.
+6. The results are being displayed categorized by clicked navbar option 'movies (= all)' / 'YouTube' / 'Vimeo'
+- At start, the app displays demo data, which can be removed. If you refresh with empty list, demo data will be restored.
+- The app is prepared for expanding movies providers list by establishing seperate functions parsing input, forming query url and parsing received data (src/utils/fetch*)
 
-## Available Scripts
+### Styling
+- Reactstrap components
+- Bootstrap styling and util classNames
+- global index.css for customization 
 
-In the project directory, you can run:
+### Additional libraries
+- react-router (please read build info)
+- react-moment
+- react-player
 
-### `npm start`
+## Build
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+In order to avoid issues connected with deploiyng app at Netlify using React Router: 
+- the build command is following: 
+```
+"build": "CI= react-scripts build"
+```
+in which `CI= ` has to be removed in cases of CRA build.
+- in public folder `_redirects` file is included
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
