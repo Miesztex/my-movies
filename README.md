@@ -34,3 +34,6 @@ In order to avoid issues connected with deploiyng app at Netlify using React Rou
 in which `CI= ` has to be removed in cases of CRA build.
 - in public folder `_redirects` file is included
 
+#### Warnings
+
+You will find warnings when using Reactstrap moving components, which seems to be common problem with the library.
