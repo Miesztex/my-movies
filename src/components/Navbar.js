@@ -1,18 +1,18 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import {
-	Navbar,
-	NavbarBrand,
-	NavItem,
 	Nav,
-	// NavLink,
-	Dropdown,
-	DropdownItem,
-	DropdownToggle,
-	DropdownMenu,
+	Navbar,
+	NavItem,
+	NavbarBrand,
 	NavbarToggler,
 	Collapse,
+	Dropdown,
+	DropdownItem,
+	DropdownMenu,
+	DropdownToggle,
 } from 'reactstrap';
+
 import { useFilterContext } from '../context/filter_context';
 
 const NavbarComponent = () => {
@@ -25,8 +25,8 @@ const NavbarComponent = () => {
 
 	return (
 		<Navbar color='light' light expand='md'>
-			<NavbarBrand href='#'>
-				<Link to='/'>My movies</Link>
+			<NavbarBrand>
+				<Link to='/'>MyMovies</Link>
 			</NavbarBrand>
 			<NavbarToggler onClick={toggleNavbar} className='mr-2' />
 			<Collapse isOpen={!collapsed} navbar>

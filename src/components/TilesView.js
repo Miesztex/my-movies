@@ -2,6 +2,7 @@ import React from 'react';
 import Moment from 'react-moment';
 import { FaPlay, FaHeart, FaTrash, FaYoutube, FaVimeoV } from 'react-icons/fa';
 import { FiChevronRight } from 'react-icons/fi';
+
 import {
 	CardBody,
 	CardTitle,
@@ -14,15 +15,14 @@ import {
 	Button,
 	CardDeck,
 } from 'reactstrap';
-
-import MovieModal from './MovieModal';
 import { YOUTUBE } from '../context/variables';
+import MovieModal from './MovieModal';
+
 const TilesView = ({
 	movies,
 	toggleFavourites,
 	removeMovie,
 	updateCurrentMovie,
-	provider,
 }) => {
 	const providerIcon = provider =>
 		provider === YOUTUBE ? (

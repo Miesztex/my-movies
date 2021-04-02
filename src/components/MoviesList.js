@@ -24,6 +24,7 @@ const MoviesList = () => {
 
 	useEffect(() => {
 		updateProvider(provider);
+		// eslint-disable-next-line
 	}, [provider]);
 
 	const currentPageItems = pages[pagination - 1];

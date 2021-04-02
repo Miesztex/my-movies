@@ -125,8 +125,10 @@ LIST
   flex-direction: column;
 }
 
-.github-icon {
+.github-icon,
+.fb-icon {
   transform: translateY(-3px);
+  margin-right: 2px;
 }
 
 /* .icon-container {

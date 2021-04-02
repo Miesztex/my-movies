@@ -1,21 +1,20 @@
 import moment from 'moment';
+
 import {
 	LOAD_MOVIES,
-	SET_VIEW,
 	FILTER_MOVIES,
+	SET_VIEW,
 	SORT_MOVIES,
-	UPDATE_FILTERS,
+	PAGINATE,
 	UPDATE_SORT,
+	UPDATE_FILTERS,
 	UPDATE_PROVIDER,
 	UPDATE_PAGINATION,
-	PAGINATE,
 	UPDATE_CURRENT_MOVIE,
 	SET_MODAL,
 } from './actions';
-
-import { paginate } from '../utils/paginate';
-
 import { NAME_AZ, NAME_ZA, OLD, NEW, itemsNumberPerPage } from './variables';
+import { paginate } from '../utils/paginate';
 
 const filter_reducer = (state, action) => {
 	console.log(action);

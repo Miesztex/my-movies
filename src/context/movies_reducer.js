@@ -1,12 +1,12 @@
 import {
+	SET_ALERT,
 	INIT_MOVIES,
 	ADD_MOVIE,
 	GET_MOVIE_BEGIN,
 	GET_MOVIE_END,
-	SET_ALERT,
+	TOGGLE_FAV,
 	REMOVE_MOVIE,
 	CLEAR_ALL,
-	TOGGLE_FAV,
 } from './actions';
 
 const reducer = (state, action) => {

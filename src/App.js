@@ -1,9 +1,8 @@
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { Container } from 'reactstrap';
 
-import { Home, About, Movies, SingleMovie, Error } from './pages/index';
-
+import { Home, About, Movies, Error } from './pages/index';
 import { Navbar, Footer } from './components/index';
-import { Container, Row } from 'reactstrap';
 
 function App() {
 	return (

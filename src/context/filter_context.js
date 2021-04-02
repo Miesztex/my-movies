@@ -1,21 +1,19 @@
 import React, { useEffect, useContext, useReducer } from 'react';
 
 import {
-	UPDATE_FILTERS,
-	UPDATE_PROVIDER,
 	LOAD_MOVIES,
 	SET_VIEW,
-	UPDATE_SORT,
-	FILTER_MOVIES,
-	SORT_MOVIES,
 	PAGINATE,
+	SORT_MOVIES,
+	FILTER_MOVIES,
+	UPDATE_SORT,
+	UPDATE_FILTERS,
+	UPDATE_PROVIDER,
 	UPDATE_PAGINATION,
 	UPDATE_CURRENT_MOVIE,
 	SET_MODAL,
 } from './actions';
-
-import { NAME_AZ, NAME_ZA, OLD, NEW } from './variables';
-
+import { NAME_AZ } from './variables';
 import reducer from './filter_reducer';
 import { useMoviesContext } from './movies_context';
 

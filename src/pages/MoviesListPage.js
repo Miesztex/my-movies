@@ -1,6 +1,6 @@
 import React from 'react';
-import { useParams } from 'react-router';
-import { Col, Container, Row } from 'reactstrap';
+import { Container, Row } from 'reactstrap';
+
 import { Filters, MoviesList } from '../components';
 
 const MoviesListPage = () => {

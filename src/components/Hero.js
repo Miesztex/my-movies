@@ -1,22 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import {
-	Button,
 	Form,
 	FormGroup,
-	Label,
+	Button,
 	Input,
-	FormText,
-	Row,
 	Alert,
 	Spinner,
 	InputGroup,
 	InputGroupAddon,
-	InputGroupText,
 	Container,
 } from 'reactstrap';
-import { useMoviesContext } from '../context/movies_context';
 
 import { VIMEO, YOUTUBE } from '../context/variables';
+import { useMoviesContext } from '../context/movies_context';
 
 const Hero = () => {
 	const { addItem, alert, setAlert, isLoading } = useMoviesContext();
@@ -33,6 +29,7 @@ const Hero = () => {
 		return () => {
 			clearTimeout(alertFadeTO);
 		};
+		// eslint-disable-next-line
 	}, [alert]);
 
 	const handleSubmit = e => {
@@ -46,7 +43,7 @@ const Hero = () => {
 		<main>
 			<Container className='container d-flex flex-column align-items-center justify-content-center mt-5'>
 				<h5 className='text-center'>
-					Keep all your favorites movie in one place!
+					Keep all your favourite movies in one place!
 				</h5>
 				<h4 className='text-uppercase mt-4 text-center'>
 					Just enter the URL or ID

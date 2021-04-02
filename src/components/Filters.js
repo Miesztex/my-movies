@@ -1,22 +1,22 @@
 import React, { useState } from 'react';
 import {
-	Button,
 	Card,
 	CardBody,
 	Collapse,
 	FormGroup,
-	Label,
 	Form,
 	Input,
+	Button,
+	InputGroup,
 	CustomInput,
 	InputGroupAddon,
 	InputGroupText,
-	InputGroup,
 } from 'reactstrap';
-import Pagination from './Pagination';
+
+import { NAME_AZ, NAME_ZA, OLD, NEW } from '../context/variables';
 import { useFilterContext } from '../context/filter_context';
 import { useMoviesContext } from '../context/movies_context';
-import { NAME_AZ, NAME_ZA, OLD, NEW } from '../context/variables';
+import Pagination from './Pagination';
 
 const Filters = () => {
 	const {

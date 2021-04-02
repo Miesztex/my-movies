@@ -1,18 +1,17 @@
 // IMPORTS
 import React, { useContext, useEffect, useReducer } from 'react';
-import reducer from './movies_reducer';
 
 import {
+	INIT_MOVIES,
 	ADD_MOVIE,
 	GET_MOVIE_BEGIN,
 	GET_MOVIE_END,
-	INIT_MOVIES,
 	REMOVE_MOVIE,
-	TOGGLE_FAV,
 	CLEAR_ALL,
+	TOGGLE_FAV,
 	SET_ALERT,
 } from './actions';
-
+import reducer from './movies_reducer';
 import fetchItem from '../utils/fetchItem';
 import demo_data from './demo_data';
 
@@ -35,6 +34,7 @@ export const MoviesProvider = ({ children }) => {
 	useEffect(() => {
 		if (state.movies.length) return;
 		dispatch({ type: INIT_MOVIES, payload: demo_data });
+		// eslint-disable-next-line
 	}, []);
 
 	const isPresent = item =>

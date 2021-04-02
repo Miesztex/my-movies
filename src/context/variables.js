@@ -6,4 +6,4 @@ export const NAME_ZA = 'NAME_ZA';
 export const OLD = 'OLD';
 export const NEW = 'NEW';
 
-export const itemsNumberPerPage = 2;
+export const itemsNumberPerPage = 5;
