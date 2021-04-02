@@ -23,7 +23,7 @@ const Hero = () => {
 	// alert aut-fade effect
 	useEffect(() => {
 		if (!alert.show) return;
-		let alertFadeTO = setTimeout(() => {
+		setTimeout(() => {
 			setAlert();
 			setIsDisabled(false);
 		}, 3000);
