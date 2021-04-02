@@ -86,7 +86,12 @@ export const MoviesProvider = ({ children }) => {
 			});
 	};
 
-	const setAlert = (show = false, msg = '', type = 'success', place = HERO) => {
+	const setAlert = (
+		show = false,
+		msg = '',
+		type = state.alert.type,
+		place = HERO
+	) => {
 		dispatch({ type: SET_ALERT, payload: { show, msg, type, place } });
 	};
 
