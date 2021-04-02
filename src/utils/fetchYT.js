@@ -20,12 +20,13 @@ export const formItemYT = (data, provider, movieUrl) => {
 		snippet: {
 			localized: { title },
 			thumbnails: {
-				default: { url: imageUrl },
+				medium: { url: imageUrl },
 			},
 			publishedAt,
 		},
 		statistics: { likeCount: likes, viewCount: views },
 	} = data.items[0];
+	console.log(data);
 
 	const newItem = {
 		id: new Date().getTime(),

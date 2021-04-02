@@ -60,7 +60,7 @@ export const FilterProvider = ({ children }) => {
 		dispatch({ type: SORT_MOVIES });
 		dispatch({ type: PAGINATE });
 		dispatch({ type: UPDATE_PAGINATION, payload: 'reset' });
-	}, [movies, state.sort, state.filters]);
+	}, [movies, state.sort, state.filters, state.provider, state.pagination]);
 
 	// --- filter ---
 	const updateFilters = e => {

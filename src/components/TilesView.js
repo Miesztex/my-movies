@@ -1,6 +1,6 @@
 import React from 'react';
 import Moment from 'react-moment';
-import { FaPlay, FaHeart, FaTrash } from 'react-icons/fa';
+import { FaPlay, FaHeart, FaTrash, FaYoutube, FaVimeoV } from 'react-icons/fa';
 import { FiChevronRight } from 'react-icons/fi';
 import {
 	CardBody,
@@ -16,12 +16,24 @@ import {
 } from 'reactstrap';
 
 import MovieModal from './MovieModal';
+import { YOUTUBE } from '../context/variables';
 const TilesView = ({
 	movies,
 	toggleFavourites,
 	removeMovie,
 	updateCurrentMovie,
+	provider,
 }) => {
+	const providerIcon = provider =>
+		provider === YOUTUBE ? (
+			<span>
+				<FaYoutube className='yt-icon' />
+			</span>
+		) : (
+			<span>
+				<FaVimeoV className='vimeo-icon' />
+			</span>
+		);
 	return (
 		<>
 			<MovieModal />
@@ -41,7 +53,8 @@ const TilesView = ({
 							} = item;
 							return (
 								<Card outline color='primary' className='card mt-3'>
-									<CardBody>
+									<CardBody className='icon-container'>
+										{providerIcon(provider)}
 										<CardImg top width='100%' src={imageUrl} alt={title} />
 										<CardTitle tag='h6' className='mt-3'>
 											{title}

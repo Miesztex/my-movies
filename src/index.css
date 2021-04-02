@@ -129,6 +129,25 @@ LIST
   transform: translateY(-3px);
 }
 
+/* .icon-container {
+  position: relative;
+} */
+
+.yt-icon,
+.vimeo-icon {
+  position: absolute;
+  top: 2px;
+  right: 3px;
+}
+
+.yt-icon {
+  color: brown;
+}
+
+.vimeo-icon {
+  color: lightskyblue;
+}
+
 .movie-action-btn {
   display: flex;
   justify-content: space-between;
@@ -181,9 +200,4 @@ LIST
 
 .modal-content {
   height: 100%;
-  /* position: fixed;
-  top: 50px;
-  left: 50px;
-  right: 50px;
-  bottom: 50px; */
 }

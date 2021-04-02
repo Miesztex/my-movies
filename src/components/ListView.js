@@ -2,10 +2,11 @@ import React from 'react';
 import Moment from 'react-moment';
 import { List, Button, ListInlineItem } from 'reactstrap';
 
-import { FaPlay, FaHeart, FaTrash } from 'react-icons/fa';
+import { FaPlay, FaHeart, FaTrash, FaYoutube, FaVimeoV } from 'react-icons/fa';
 import { FiChevronRight } from 'react-icons/fi';
 
 import MovieModal from './MovieModal';
+import { YOUTUBE } from '../context/variables';
 
 const ListView = ({
 	movies,
@@ -13,6 +14,16 @@ const ListView = ({
 	toggleFavourites,
 	updateCurrentMovie,
 }) => {
+	const providerIcon = provider =>
+		provider === YOUTUBE ? (
+			<span>
+				<FaYoutube className='yt-icon' />
+			</span>
+		) : (
+			<span>
+				<FaVimeoV className='vimeo-icon' />
+			</span>
+		);
 	return (
 		<>
 			<MovieModal />
@@ -28,7 +39,7 @@ const ListView = ({
 						favourite,
 					} = item;
 					return (
-						<li className='list-group-item' key={id}>
+						<li className='list-group-item py-4' key={id}>
 							<div className='list-info'>
 								<h5>{title}</h5>
 								{/* --- info --- */}
@@ -99,6 +110,7 @@ const ListView = ({
 										</span>
 									</Button>
 								</ListInlineItem>
+								{providerIcon(provider)}
 							</List>
 						</li>
 					);
