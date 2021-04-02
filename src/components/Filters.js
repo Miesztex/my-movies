@@ -11,6 +11,7 @@ import {
 	CustomInput,
 	InputGroupAddon,
 	InputGroupText,
+	Spinner,
 } from 'reactstrap';
 
 import {
@@ -40,7 +41,7 @@ const Filters = () => {
 		per_page,
 		updatePerPage,
 	} = useFilterContext();
-	const { clearMovies, addAllDemo } = useMoviesContext();
+	const { clearMovies, addAllDemo, isLoading } = useMoviesContext();
 
 	const [filterOpen, setFilterOpen] = useState(false);
 	const handleToggle = () => setFilterOpen(!filterOpen);
@@ -51,6 +52,12 @@ const Filters = () => {
 		) : (
 			<Button onClick={clearMovies}>Remove all</Button>
 		);
+
+	const buttonOrSpinner = isLoading ? (
+		<Spinner color='primary' className='mx-5'></Spinner>
+	) : (
+		clearOrAdd
+	);
 
 	return (
 		<div className='collapse-container'>
@@ -64,7 +71,7 @@ const Filters = () => {
 					pagination={pagination}
 					pages={pages}
 				/>
-				{clearOrAdd}
+				{buttonOrSpinner}
 			</div>
 			{/* ======== COLLAPSE ========== */}
 			<Collapse isOpen={filterOpen}>
