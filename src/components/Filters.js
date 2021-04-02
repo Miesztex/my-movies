@@ -93,8 +93,8 @@ const Filters = () => {
 								<Input type='select' value={sort} onChange={updateSort} inline>
 									<option value={NAME_AZ}>A-Z</option>
 									<option value={NAME_ZA}>Z-A</option>
-									<option value={OLD}>Oldest</option>
-									<option value={NEW}>Newest</option>
+									<option value={OLD}>Most recently published</option>
+									<option value={NEW}>Least recently published</option>
 								</Input>
 							</InputGroup>
 							<br />
