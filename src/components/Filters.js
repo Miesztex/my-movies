@@ -31,7 +31,6 @@ const Filters = () => {
 		pagination,
 		per_page,
 		updatePerPage,
-		filtered_movies,
 	} = useFilterContext();
 	const { clearMovies } = useMoviesContext();
 
