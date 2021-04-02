@@ -18,17 +18,15 @@ const Hero = () => {
 	const { addItem, alert, setAlert, isLoading } = useMoviesContext();
 	const [movieInput, setMovieInput] = useState('');
 	const [provider, setProvider] = useState(YOUTUBE);
+	const [isDisabled, setIsDisabled] = useState(false);
 
 	// alert aut-fade effect
 	useEffect(() => {
-		let alertFadeTO;
 		if (!alert.show) return;
-		alertFadeTO = setTimeout(() => {
+		let alertFadeTO = setTimeout(() => {
 			setAlert();
-		}, 5000);
-		return () => {
-			clearTimeout(alertFadeTO);
-		};
+			setIsDisabled(false);
+		}, 3000);
 		// eslint-disable-next-line
 	}, [alert]);
 
@@ -37,13 +35,14 @@ const Hero = () => {
 		addItem(movieInput, provider, HERO);
 		setMovieInput('');
 		setProvider(YOUTUBE);
+		setIsDisabled(true);
 	};
 
 	const spinnerOrButton = isLoading => {
 		return isLoading ? (
 			<Spinner color='primary' className='align-self-center' />
 		) : (
-			<Button size='lg' type='submit' color='primary'>
+			<Button size='lg' type='submit' color='primary' disabled={isDisabled}>
 				Add
 			</Button>
 		);
