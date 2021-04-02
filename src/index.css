@@ -84,6 +84,14 @@ COLLAPSE
   }
 }
 
+.input-group-text {
+  width: 7rem;
+  display: flex;
+  justify-content: center;
+}
+
+
+
 .collapse-container {
   max-width: var(--breakpoint-md);
   margin: 0 auto;

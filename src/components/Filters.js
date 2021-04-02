@@ -78,55 +78,68 @@ const Filters = () => {
 				<Card>
 					<CardBody>
 						<Form>
-							<InputGroup>
-								<InputGroupAddon addonType='prepend'>
-									<InputGroupText className='px-4'> View: </InputGroupText>
-								</InputGroupAddon>
-								<Input type='select' value={view} onChange={setListView} inline>
-									<option value={LIST_VIEW}>List view</option>
-									<option value={TILES_VIEW}>Grid view</option>
-								</Input>
-							</InputGroup>
-							<br />
-							<InputGroup>
-								<InputGroupAddon addonType='prepend'>
-									<InputGroupText className='px-2'> Per page: </InputGroupText>
-								</InputGroupAddon>
-								<Input
-									type='select'
-									value={per_page}
-									onChange={updatePerPage}
-									inline>
-									<option value='5'>5</option>
-									<option value='10'>10</option>
-									<option value='15'>15</option>
-								</Input>
-							</InputGroup>
-							<br />
-							<InputGroup>
-								<InputGroupAddon addonType='prepend'>
-									<InputGroupText className='px-3'> Sort by: </InputGroupText>
-								</InputGroupAddon>
-								<Input type='select' value={sort} onChange={updateSort} inline>
-									<option value={NAME_AZ}>A-Z</option>
-									<option value={NAME_ZA}>Z-A</option>
-									<option value={OLD}>Least recently published</option>
-									<option value={NEW}>Most recently published</option>
-								</Input>
-							</InputGroup>
-							<br />
-							<FormGroup>
-								<div>
-									<CustomInput
-										type='switch'
-										id='favourite'
-										name='favourite'
-										label='Show favourites'
-										checked={favourite}
-										onClick={updateFilters}
-									/>
-								</div>
-							</FormGroup>
+							<div className='collapse-form-control'>
+								<InputGroup>
+									<InputGroupAddon addonType='prepend'>
+										<InputGroupText className='px-4'> View: </InputGroupText>
+									</InputGroupAddon>
+									<Input
+										type='select'
+										value={view}
+										onChange={setListView}
+										inline>
+										<option value={LIST_VIEW}>List view</option>
+										<option value={TILES_VIEW}>Grid view</option>
+									</Input>
+								</InputGroup>
+								<br />
+								<InputGroup>
+									<InputGroupAddon addonType='prepend'>
+										<InputGroupText className='px-2'>
+											{' '}
+											Per page:{' '}
+										</InputGroupText>
+									</InputGroupAddon>
+									<Input
+										type='select'
+										value={per_page}
+										onChange={updatePerPage}
+										inline>
+										<option value='5'>5</option>
+										<option value='10'>10</option>
+										<option value='15'>15</option>
+									</Input>
+								</InputGroup>
+								<br />
+								<InputGroup>
+									<InputGroupAddon addonType='prepend'>
+										<InputGroupText className='px-3'> Sort by: </InputGroupText>
+									</InputGroupAddon>
+									<Input
+										type='select'
+										value={sort}
+										onChange={updateSort}
+										inline>
+										<option value={NAME_AZ}>A-Z</option>
+										<option value={NAME_ZA}>Z-A</option>
+										<option value={OLD}>Least recently published</option>
+										<option value={NEW}>Most recently published</option>
+									</Input>
+								</InputGroup>
+								<br />
+								<FormGroup>
+									<div>
+										<CustomInput
+											type='switch'
+											id='favourite'
+											name='favourite'
+											label='Show favourites'
+											checked={favourite}
+											onClick={updateFilters}
+										/>
+									</div>
+								</FormGroup>
+							</div>
 						</Form>
 					</CardBody>
 				</Card>
