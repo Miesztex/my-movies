@@ -1,5 +1,5 @@
 .container {
-  min-height: 80vh;
+  min-height: 75vh;
 }
 
 p {
@@ -59,6 +59,7 @@ LIST
 .tiles-container {
   display: grid;
   gap: 2rem 1.5rem;
+  width: 100%;
 }
 
 @media (min-width: 768px) {

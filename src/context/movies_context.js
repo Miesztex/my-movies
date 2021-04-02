@@ -15,9 +15,15 @@ import reducer from './movies_reducer';
 import fetchItem from '../utils/fetchItem';
 import demo_data from './demo_data';
 
+const initLocalStorage = () => {
+	let data = localStorage.getItem('movies');
+	if (data) return JSON.parse(localStorage.getItem('movies'));
+	else return [];
+};
+
 // --------------- STATE ------------------
 const initialState = {
-	movies: [],
+	movies: initLocalStorage(),
 	provider: '',
 	vimeo_movies: [],
 	alert: { show: false, type: 'success', msg: '' },
@@ -26,17 +32,22 @@ const initialState = {
 
 // --------------- CONTEXT ------------------
 const MoviesContext = React.createContext();
-
-// --------------- PROVIDER -------------
 export const MoviesProvider = ({ children }) => {
 	const [state, dispatch] = useReducer(reducer, initialState);
 
+	// save state as local storage
+	useEffect(() => {
+		localStorage.setItem('movies', JSON.stringify(state.movies));
+	}, [state.movies]);
+
+	// init demo data
 	useEffect(() => {
 		if (state.movies.length) return;
 		dispatch({ type: INIT_MOVIES, payload: demo_data });
 		// eslint-disable-next-line
 	}, []);
 
+	// check if movie is already in the state
 	const isPresent = item =>
 		state.movies.findIndex(movie => movie.movieUrl === item.movieUrl) !== -1;
 

@@ -8,6 +8,7 @@ import {
 	FILTER_MOVIES,
 	UPDATE_SORT,
 	UPDATE_FILTERS,
+	UPDATE_PER_PAGE,
 	UPDATE_PROVIDER,
 	UPDATE_PAGINATION,
 	UPDATE_CURRENT_MOVIE,
@@ -29,6 +30,7 @@ const initialState = {
 	current_movie: null,
 	provider: '',
 	pagination: 1,
+	per_page: 5,
 };
 
 // ------ CONTEXT ------
@@ -58,7 +60,14 @@ export const FilterProvider = ({ children }) => {
 		dispatch({ type: SORT_MOVIES });
 		dispatch({ type: PAGINATE });
 		dispatch({ type: UPDATE_PAGINATION, payload: 'reset' });
-	}, [movies, state.sort, state.filters, state.provider, state.pagination]);
+	}, [
+		movies,
+		state.sort,
+		state.filters,
+		state.provider,
+		state.pagination,
+		state.per_page,
+	]);
 
 	// --- filter ---
 	const updateFilters = e => {
@@ -79,6 +88,10 @@ export const FilterProvider = ({ children }) => {
 		updateModal();
 	};
 
+	const updatePerPage = e => {
+		dispatch({ type: UPDATE_PER_PAGE, payload: e.target.value });
+	};
+
 	// --- provider ---
 	return (
 		<FilterContext.Provider
@@ -87,6 +100,7 @@ export const FilterProvider = ({ children }) => {
 				setListView,
 				updateSort,
 				updateFilters,
+				updatePerPage,
 				updateProvider,
 				updatePagination,
 				updateCurrentMovie,

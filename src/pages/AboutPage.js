@@ -20,7 +20,7 @@ const AboutPage = () => {
 			<h6 className='mb-3'>
 				All you need to do is to enter your movie's basic data: URL or ID.
 			</h6>
-			<h6 className='mb-5'>
+			<h6 className='mb-3'>
 				<span>
 					<FaInfoCircle
 						style={{ transform: 'translateY(-3px)', color: 'var(--warning)' }}
@@ -28,6 +28,15 @@ const AboutPage = () => {
 				</span>{' '}
 				Please note, that at this moment the url has to be finished by an ID,
 				with any following strings the app won't work.
+			</h6>
+			<h6 className='mb-5'>
+				<span>
+					<FaInfoCircle
+						style={{ transform: 'translateY(-3px)', color: 'var(--warning)' }}
+					/>
+				</span>{' '}
+				At start, the app displays demo data, which can be removed. If you
+				refresh with empty list, demo data will be restored.
 			</h6>
 			<Link className='align-self-center' to='/'>
 				<Button color='primary' size='lg'>

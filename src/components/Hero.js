@@ -56,7 +56,7 @@ const Hero = () => {
 								type='text'
 								name='url'
 								id='url'
-								placeholder="Your movie's URL or ID"
+								placeholder="Your movie's URL/ID"
 								value={movieInput}
 								onChange={e => setMovieInput(e.target.value)}
 							/>

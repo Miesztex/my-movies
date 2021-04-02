@@ -5,6 +5,7 @@ export const CLEAR_ALL = 'CLEAR_ALL';
 export const SET_ALERT = 'SET_ALERT';
 export const SET_VIEW = 'SET_VIEW';
 export const UPDATE_SORT = 'UPDATE_SORT';
+export const UPDATE_PER_PAGE = 'UPDATE_PER_PAGE';
 export const UPDATE_PROVIDER = 'UPDATE_PROVIDER';
 export const UPDATE_PAGINATION = 'UPDATE_PAGINATION';
 export const SORT_MOVIES = 'SORT_MOVIES';

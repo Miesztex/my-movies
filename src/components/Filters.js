@@ -29,6 +29,8 @@ const Filters = () => {
 		pages,
 		updatePagination,
 		pagination,
+		per_page,
+		updatePerPage,
 	} = useFilterContext();
 	const { clearMovies } = useMoviesContext();
 
@@ -65,6 +67,17 @@ const Filters = () => {
 									<option value={true}>List view</option>
 									<option value={false}>Grid view</option>
 								</Input>
+							</InputGroup>
+							<br />
+							<InputGroup>
+								<InputGroupAddon addonType='prepend'>
+									<InputGroupText className='px-2'> Per page: </InputGroupText>
+								</InputGroupAddon>
+								<Input
+									type='number'
+									value={per_page}
+									onChange={updatePerPage}
+									inline></Input>
 							</InputGroup>
 							<br />
 							<InputGroup>

@@ -8,6 +8,7 @@ import {
 	PAGINATE,
 	UPDATE_SORT,
 	UPDATE_FILTERS,
+	UPDATE_PER_PAGE,
 	UPDATE_PROVIDER,
 	UPDATE_PAGINATION,
 	UPDATE_CURRENT_MOVIE,
@@ -105,12 +106,14 @@ const filter_reducer = (state, action) => {
 				newPagination = 1;
 			return { ...state, pagination: newPagination };
 		case PAGINATE:
-			const newPages = paginate(state.filtered_movies, itemsNumberPerPage);
+			const newPages = paginate(state.filtered_movies, state.per_page);
 			return { ...state, pages: newPages };
 		case SET_MODAL:
 			return { ...state, modal_open: !state.modal_open };
 		case UPDATE_CURRENT_MOVIE:
 			return { ...state, current_movie: action.payload };
+		case UPDATE_PER_PAGE:
+			return { ...state, per_page: action.payload };
 		default:
 			throw new Error(`No Matching "${action.type}" - action type`);
 	}
