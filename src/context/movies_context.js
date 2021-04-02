@@ -21,7 +21,9 @@ const initLocalStorage = () => {
 	else return [];
 };
 
-// --------------- STATE ------------------
+// ===========================
+// STATE
+// ===========================
 const initialState = {
 	movies: initLocalStorage(),
 	provider: '',
@@ -30,7 +32,9 @@ const initialState = {
 	isLoading: false,
 };
 
-// --------------- CONTEXT ------------------
+// ===========================
+// CONTEXT & PROVIDER
+// ===========================
 const MoviesContext = React.createContext();
 export const MoviesProvider = ({ children }) => {
 	const [state, dispatch] = useReducer(reducer, initialState);
@@ -51,6 +55,8 @@ export const MoviesProvider = ({ children }) => {
 	const isPresent = item =>
 		state.movies.findIndex(movie => movie.movieUrl === item.movieUrl) !== -1;
 
+	// async fetch item function
+	// supports isLoading state and resolution alert
 	const addItem = (movieInput, provider) => {
 		dispatch({ type: GET_MOVIE_BEGIN });
 		fetchItem(movieInput, provider)
@@ -77,6 +83,7 @@ export const MoviesProvider = ({ children }) => {
 		dispatch({ type: SET_ALERT, payload: { show, msg, type } });
 	};
 
+	// handle movie card buttons affecting original state
 	const removeMovie = id => {
 		console.log(id);
 		dispatch({ type: REMOVE_MOVIE, payload: id });
@@ -86,7 +93,6 @@ export const MoviesProvider = ({ children }) => {
 
 	const toggleFavourites = id => dispatch({ type: TOGGLE_FAV, payload: id });
 
-	// ====== RETURN ======
 	return (
 		<MoviesContext.Provider
 			value={{
@@ -102,7 +108,7 @@ export const MoviesProvider = ({ children }) => {
 	);
 };
 
-// CUSTOM CONTEXT HOOK
+// 	custom use-movies-context hook
 export const useMoviesContext = () => {
 	return useContext(MoviesContext);
 };

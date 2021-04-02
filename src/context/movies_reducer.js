@@ -10,10 +10,13 @@ import {
 } from './actions';
 
 const reducer = (state, action) => {
-	console.log(action);
 	switch (action.type) {
+		// ==== INIT DEMO DATA =======
 		case INIT_MOVIES:
 			return { ...state, movies: action.payload };
+		// ===========================
+		// HANDLE FETCH ITEM
+		// ===========================
 		case ADD_MOVIE:
 			return { ...state, movies: [...state.movies, action.payload] };
 		case GET_MOVIE_BEGIN:
@@ -22,6 +25,9 @@ const reducer = (state, action) => {
 			return { ...state, isLoading: false };
 		case SET_ALERT:
 			return { ...state, alert: action.payload };
+		// ===========================
+		// HANDLE MOVIE CARD ACTION-BTNS
+		// ===========================
 		case TOGGLE_FAV:
 			const favMovies = state.movies.map(item => {
 				if (item.id === action.payload) {
@@ -37,7 +43,7 @@ const reducer = (state, action) => {
 		case CLEAR_ALL:
 			return { ...state, movies: [] };
 		default:
-			throw new Error(`WROCNG ACTION TYPE: ${action.type}`);
+			return console.log(`WROCNG ACTION TYPE: ${action.type}`);
 	}
 };
 

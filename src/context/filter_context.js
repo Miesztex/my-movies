@@ -20,14 +20,18 @@ import { useMoviesContext } from './movies_context';
 
 // ------ STATE ------
 const initialState = {
+	// movies to render
 	all_movies: [],
 	filtered_movies: [],
 	pages: [],
+	// filters & sorts
 	list_view: true,
 	sort: NAME_AZ,
 	filters: { fav: false },
+	// movie player info
 	modal_open: false,
 	current_movie: null,
+	// pagination
 	provider: '',
 	pagination: 1,
 	per_page: 5,
@@ -55,6 +59,8 @@ export const FilterProvider = ({ children }) => {
 	const updateSort = e => {
 		dispatch({ type: UPDATE_SORT, payload: e.target.value });
 	};
+
+	// reset the list on every state change
 	useEffect(() => {
 		dispatch({ type: FILTER_MOVIES });
 		dispatch({ type: SORT_MOVIES });
@@ -69,27 +75,29 @@ export const FilterProvider = ({ children }) => {
 		state.per_page,
 	]);
 
-	// --- filter ---
+	// hadle filter
 	const updateFilters = e => {
 		const { name, checked } = e.target;
 		dispatch({ type: UPDATE_FILTERS, payload: { name, checked } });
 	};
+	// handle items-per-page input
+	const updatePerPage = e => {
+		dispatch({ type: UPDATE_PER_PAGE, payload: e.target.value });
+	};
 
+	// handle provider param change
 	const updateProvider = provider => {
 		dispatch({ type: UPDATE_PROVIDER, payload: provider });
 	};
+	// handle pagination buttons
 	const updatePagination = action => {
 		dispatch({ type: UPDATE_PAGINATION, payload: action });
 	};
-
+	// handle modal
 	const updateModal = () => dispatch({ type: SET_MODAL });
 	const updateCurrentMovie = movieUrl => {
 		dispatch({ type: UPDATE_CURRENT_MOVIE, payload: movieUrl });
 		updateModal();
-	};
-
-	const updatePerPage = e => {
-		dispatch({ type: UPDATE_PER_PAGE, payload: e.target.value });
 	};
 
 	// --- provider ---
@@ -110,7 +118,8 @@ export const FilterProvider = ({ children }) => {
 		</FilterContext.Provider>
 	);
 };
-// make sure use
+
+// custom use-filter-context hook
 export const useFilterContext = () => {
 	return useContext(FilterContext);
 };

@@ -4,9 +4,7 @@ import { Button } from 'reactstrap';
 
 const ErrorPage = () => {
 	return (
-		<main
-			style={{ minHeight: '80vh' }}
-			className='error d-flex flex-column justify-content-center align-items-center'>
+		<main className='error container'>
 			<h4 className='mb-5'>I'm sorry, page not found...</h4>
 			<Link to='/'>
 				<Button>Go back home</Button>

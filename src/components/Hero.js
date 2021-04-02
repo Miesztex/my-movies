@@ -39,9 +39,19 @@ const Hero = () => {
 		setProvider(YOUTUBE);
 	};
 
+	const spinnerOrButton = isLoading => {
+		return isLoading ? (
+			<Spinner color='primary' className='align-self-center' />
+		) : (
+			<Button size='lg' type='submit' color='primary'>
+				Add
+			</Button>
+		);
+	};
+
 	return (
 		<main>
-			<Container className='container d-flex flex-column align-items-center justify-content-center mt-5'>
+			<Container className='hero mt-5'>
 				<h5 className='text-center'>
 					Keep all your favourite movies in one place!
 				</h5>
@@ -84,13 +94,7 @@ const Hero = () => {
 						</Alert>
 					</div>
 					<div className='spinner-container align-self-center'>
-						{isLoading ? (
-							<Spinner color='primary' className='align-self-center' />
-						) : (
-							<Button size='lg' type='submit' color='primary'>
-								Add
-							</Button>
-						)}
+						{spinnerOrButton(isLoading)}
 					</div>
 				</Form>
 			</Container>

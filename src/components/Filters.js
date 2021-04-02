@@ -35,14 +35,14 @@ const Filters = () => {
 	const { clearMovies } = useMoviesContext();
 
 	const [filterOpen, setFilterOpen] = useState(false);
-
 	const handleToggle = () => setFilterOpen(!filterOpen);
+
 	return (
 		<div className='collapse-container'>
-			<div className='btn-container'>
+			{/* ========= BUTTONS ============ */}
+			<div className='options-btn-container'>
 				<Button color='primary' onClick={handleToggle}>
 					Options
-					{/* R icons  */}
 				</Button>
 				<Pagination
 					updatePagination={updatePagination}
@@ -51,6 +51,7 @@ const Filters = () => {
 				/>
 				<Button onClick={clearMovies}>Remove all</Button>
 			</div>
+			{/* ======== COLLAPSE ========== */}
 			<Collapse isOpen={filterOpen}>
 				<Card>
 					<CardBody>

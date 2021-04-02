@@ -21,7 +21,7 @@ const MoviesList = () => {
 
 	// set currently rendered page from param to state
 	const { provider } = useParams();
-
+	//updates provider on every param change
 	useEffect(() => {
 		updateProvider(provider);
 		// eslint-disable-next-line
@@ -29,8 +29,14 @@ const MoviesList = () => {
 
 	const currentPageItems = pages[pagination - 1];
 	if (movies.length < 1) {
-		return <h4 className='text-center'>Sorry, no movies found...</h4>;
+		return (
+			<div className='no-movies'>
+				<h4 className='text-center '>Sorry, no movies found...</h4>
+			</div>
+		);
 	}
+
+	// view switch
 	if (!list_view) {
 		return (
 			<TilesView

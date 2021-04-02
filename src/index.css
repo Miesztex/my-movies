@@ -38,7 +38,8 @@ COLLAPSE
 }
 
 
-.btn-container {
+/*  collapse options btns */
+.options-btn-container {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -47,15 +48,25 @@ COLLAPSE
   padding: 1rem 0;
 }
 
-.btn-container button {
+.options-btn-container button {
   margin-right: 0.5rem;
+}
+
+/* both views */
+.no-movies {
+  min-height: 60vh;
+  display: flex;
+  flex-basis: 100%;
+  justify-content: center;
+  align-items: center;
 }
 
 /* 
 ====================
-LIST
+TILES(GRID) VIEW
 =====================
 */
+
 .tiles-container {
   display: grid;
   gap: 2rem 1.5rem;
@@ -83,7 +94,7 @@ LIST
 
 /* 
 ====================
-LIST
+LIST VIEW
 =====================
 */
 .movie-list {
@@ -120,21 +131,19 @@ LIST
 
 }
 
+/*  hero input styling */
 .input-form {
   display: flex;
   align-self: stretch;
   flex-direction: column;
 }
 
+/* icons */
 .github-icon,
 .fb-icon {
   transform: translateY(-3px);
   margin-right: 2px;
 }
-
-/* .icon-container {
-  position: relative;
-} */
 
 .yt-icon,
 .vimeo-icon {
@@ -151,6 +160,7 @@ LIST
   color: lightskyblue;
 }
 
+/* heart icon */
 .movie-action-btn {
   display: flex;
   justify-content: space-between;
@@ -176,6 +186,7 @@ LIST
   height: 72px;
 }
 
+/* make the modal full-screen */
 .media-player-container {
   width: 100%;
   height: 100%;
@@ -203,4 +214,53 @@ LIST
 
 .modal-content {
   height: 100%;
+}
+
+
+/* 
+==============
+ABOUT PAGE
+==============
+*/
+
+.about {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.info-icon {
+  transform: translateY(-3px);
+  color: var(--warning)
+}
+
+
+/* 
+==============
+ERROR PAGE
+==============
+*/
+
+.error {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+/* 
+==============
+HERO PAGE
+==============
+*/
+
+.hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }

@@ -1,6 +1,8 @@
 import React from 'react';
 import { Pagination, PaginationItem, PaginationLink } from 'reactstrap';
 
+import { PREV_PAGE, NEXT_PAGE } from '../context/variables';
+
 const PaginationPanel = ({ updatePagination, pagination, pages }) => {
 	return pages.length ? (
 		<Pagination size='sm'>
@@ -9,7 +11,7 @@ const PaginationPanel = ({ updatePagination, pagination, pages }) => {
 					<PaginationLink
 						previous
 						onClick={() => {
-							updatePagination('prev');
+							updatePagination(PREV_PAGE);
 						}}
 					/>
 				</PaginationItem>
@@ -24,7 +26,7 @@ const PaginationPanel = ({ updatePagination, pagination, pages }) => {
 					<PaginationLink
 						next
 						onClick={() => {
-							updatePagination('next');
+							updatePagination(NEXT_PAGE);
 						}}
 					/>
 				</PaginationItem>

@@ -5,14 +5,7 @@ import { FaInfoCircle } from 'react-icons/fa';
 
 const AboutPage = () => {
 	return (
-		<main
-			style={{
-				minHeight: '80vh',
-				maxWidth: '700px',
-				margin: '0 auto',
-				padding: '2rem',
-			}}
-			className='about d-flex flex-column justify-content-center align-items-start'>
+		<main className='about container'>
 			<h4 className='mb-5'>
 				App MyMovies allows you to keep all your favourite movies in{' '}
 				<span>one place</span>.
@@ -22,18 +15,14 @@ const AboutPage = () => {
 			</h6>
 			<h6 className='mb-3'>
 				<span>
-					<FaInfoCircle
-						style={{ transform: 'translateY(-3px)', color: 'var(--warning)' }}
-					/>
+					<FaInfoCircle className='info-icon' />
 				</span>{' '}
 				Please note, that at this moment the url has to be finished by an ID,
 				with any following strings the app won't work.
 			</h6>
 			<h6 className='mb-5'>
 				<span>
-					<FaInfoCircle
-						style={{ transform: 'translateY(-3px)', color: 'var(--warning)' }}
-					/>
+					<FaInfoCircle className='info-icon' />
 				</span>{' '}
 				At start, the app displays demo data, which can be removed. If you
 				refresh with empty list, demo data will be restored.
