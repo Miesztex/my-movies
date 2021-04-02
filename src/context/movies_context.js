@@ -11,6 +11,7 @@ import {
 	TOGGLE_FAV,
 	SET_ALERT,
 } from './actions';
+import { HERO, LIST } from './variables';
 import reducer from './movies_reducer';
 import fetchItem from '../utils/fetchItem';
 import demo_data from './demo_data';
@@ -28,7 +29,7 @@ const initialState = {
 	movies: initLocalStorage(),
 	provider: '',
 	vimeo_movies: [],
-	alert: { show: false, type: 'success', msg: '' },
+	alert: { show: false, type: 'success', msg: '', place: HERO },
 	isLoading: false,
 };
 
@@ -57,7 +58,7 @@ export const MoviesProvider = ({ children }) => {
 
 	// async fetch item function
 	// supports isLoading state and resolution alert
-	const addItem = (movieInput, provider) => {
+	const addItem = (movieInput, provider, place) => {
 		dispatch({ type: GET_MOVIE_BEGIN });
 		fetchItem(movieInput, provider)
 			.then(newItem => {
@@ -66,30 +67,40 @@ export const MoviesProvider = ({ children }) => {
 					return setAlert(
 						true,
 						'The movie is already in your list!',
-						'warning'
+						'warning',
+						place
 					);
 				}
 				dispatch({ type: ADD_MOVIE, payload: newItem });
-				setAlert(true, 'Movie successfully added to the list!', 'success');
+				setAlert(
+					true,
+					'Movie successfully added to the list!',
+					'success',
+					place
+				);
 				dispatch({ type: GET_MOVIE_END });
 			})
 			.catch(error => {
-				setAlert(true, "I'm sorry, adding the movie failed!", 'danger');
+				setAlert(true, "I'm sorry, adding the movie failed!", 'danger', place);
 				dispatch({ type: GET_MOVIE_END });
 			});
 	};
 
-	const setAlert = (show = false, msg = '', type = 'success') => {
-		dispatch({ type: SET_ALERT, payload: { show, msg, type } });
+	const setAlert = (show = false, msg = '', type = 'success', place = HERO) => {
+		dispatch({ type: SET_ALERT, payload: { show, msg, type, place } });
+	};
+
+	const addAllDemo = () => {
+		demo_data.forEach(item => {
+			addItem(item.movieUrl, item.provider, LIST);
+		});
 	};
 
 	// handle movie card buttons affecting original state
 	const removeMovie = id => {
 		dispatch({ type: REMOVE_MOVIE, payload: id });
 	};
-
 	const clearMovies = () => dispatch({ type: CLEAR_ALL });
-
 	const toggleFavourites = id => dispatch({ type: TOGGLE_FAV, payload: id });
 
 	return (
@@ -101,6 +112,7 @@ export const MoviesProvider = ({ children }) => {
 				removeMovie,
 				toggleFavourites,
 				clearMovies,
+				addAllDemo,
 			}}>
 			{children}
 		</MoviesContext.Provider>

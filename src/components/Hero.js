@@ -11,7 +11,7 @@ import {
 	Container,
 } from 'reactstrap';
 
-import { VIMEO, YOUTUBE } from '../context/variables';
+import { HERO, VIMEO, YOUTUBE } from '../context/variables';
 import { useMoviesContext } from '../context/movies_context';
 
 const Hero = () => {
@@ -34,7 +34,7 @@ const Hero = () => {
 
 	const handleSubmit = e => {
 		e.preventDefault();
-		addItem(movieInput, provider);
+		addItem(movieInput, provider, HERO);
 		setMovieInput('');
 		setProvider(YOUTUBE);
 	};
@@ -48,6 +48,12 @@ const Hero = () => {
 			</Button>
 		);
 	};
+
+	const fetchAlert = alert.place === HERO && (
+		<Alert color={alert.type} isOpen={alert.show} className='text-center'>
+			{alert.msg}
+		</Alert>
+	);
 
 	return (
 		<main>
@@ -86,12 +92,7 @@ const Hero = () => {
 						<FormGroup></FormGroup>
 					</div>
 					<div className='alert-container' style={{ flexBasis: '80px' }}>
-						<Alert
-							color={alert.type}
-							isOpen={alert.show}
-							className='text-center'>
-							{alert.msg}
-						</Alert>
+						{fetchAlert}
 					</div>
 					<div className='spinner-container align-self-center'>
 						{spinnerOrButton(isLoading)}

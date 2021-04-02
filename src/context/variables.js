@@ -9,3 +9,6 @@ export const NEW = 'NEW';
 // pagination
 export const PREV_PAGE = 'PREV_PAGE';
 export const NEXT_PAGE = 'NEXT_PAGE';
+// alert places
+export const HERO = 'HERO';
+export const LIST = 'LIST';

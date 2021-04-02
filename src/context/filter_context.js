@@ -20,19 +20,15 @@ import { useMoviesContext } from './movies_context';
 
 // ------ STATE ------
 const initialState = {
-	// movies to render
-	all_movies: [],
+	all_movies: [], // movies to render
 	filtered_movies: [],
 	pages: [],
-	// filters & sorts
-	list_view: true,
+	list_view: true, // filters & sorts
 	sort: NAME_AZ,
 	filters: { fav: false },
-	// movie player info
-	modal_open: false,
+	modal_open: false, // movie player info
 	current_movie: null,
-	// pagination
-	provider: '',
+	provider: '', // pagination
 	pagination: 1,
 	per_page: 5,
 };

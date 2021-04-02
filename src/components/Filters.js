@@ -20,6 +20,7 @@ import Pagination from './Pagination';
 
 const Filters = () => {
 	const {
+		all_movies,
 		sort,
 		list_view,
 		filters: { favourite },
@@ -32,10 +33,17 @@ const Filters = () => {
 		per_page,
 		updatePerPage,
 	} = useFilterContext();
-	const { clearMovies } = useMoviesContext();
+	const { clearMovies, addAllDemo } = useMoviesContext();
 
 	const [filterOpen, setFilterOpen] = useState(false);
 	const handleToggle = () => setFilterOpen(!filterOpen);
+
+	const clearOrAdd =
+		all_movies.length < 1 ? (
+			<Button onClick={addAllDemo}>Get demo</Button>
+		) : (
+			<Button onClick={clearMovies}>Remove all</Button>
+		);
 
 	return (
 		<div className='collapse-container'>
@@ -49,7 +57,7 @@ const Filters = () => {
 					pagination={pagination}
 					pages={pages}
 				/>
-				<Button onClick={clearMovies}>Remove all</Button>
+				{clearOrAdd}
 			</div>
 			{/* ======== COLLAPSE ========== */}
 			<Collapse isOpen={filterOpen}>

@@ -25,7 +25,8 @@ const AboutPage = () => {
 					<FaInfoCircle className='info-icon' />
 				</span>{' '}
 				At start, the app displays demo data, which can be removed. If you
-				refresh with empty list, demo data will be restored.
+				refresh with empty list, demo data will be restored. If you remove all
+				your data, the "Add demo" button will be available.
 			</h6>
 			<Link className='align-self-center' to='/'>
 				<Button color='primary' size='lg'>
