@@ -13,7 +13,14 @@ import {
 	InputGroupText,
 } from 'reactstrap';
 
-import { NAME_AZ, NAME_ZA, OLD, NEW } from '../context/variables';
+import {
+	NAME_AZ,
+	NAME_ZA,
+	OLD,
+	NEW,
+	TILES_VIEW,
+	LIST_VIEW,
+} from '../context/variables';
 import { useFilterContext } from '../context/filter_context';
 import { useMoviesContext } from '../context/movies_context';
 import Pagination from './Pagination';
@@ -22,7 +29,7 @@ const Filters = () => {
 	const {
 		all_movies,
 		sort,
-		list_view,
+		view,
 		filters: { favourite },
 		updateFilters,
 		updateSort,
@@ -68,13 +75,9 @@ const Filters = () => {
 								<InputGroupAddon addonType='prepend'>
 									<InputGroupText className='px-4'> View: </InputGroupText>
 								</InputGroupAddon>
-								<Input
-									type='select'
-									value={list_view}
-									onChange={setListView}
-									inline>
-									<option value={true}>List view</option>
-									<option value={false}>Grid view</option>
+								<Input type='select' value={view} onChange={setListView} inline>
+									<option value={LIST_VIEW}>List view</option>
+									<option value={TILES_VIEW}>Grid view</option>
 								</Input>
 							</InputGroup>
 							<br />

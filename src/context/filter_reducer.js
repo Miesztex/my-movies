@@ -14,7 +14,15 @@ import {
 	UPDATE_CURRENT_MOVIE,
 	SET_MODAL,
 } from './actions';
-import { NAME_AZ, NAME_ZA, OLD, NEW, NEXT_PAGE, PREV_PAGE } from './variables';
+import {
+	NAME_AZ,
+	NAME_ZA,
+	OLD,
+	NEW,
+	NEXT_PAGE,
+	PREV_PAGE,
+	ALL,
+} from './variables';
 import { paginate } from '../utils/paginate';
 
 const filter_reducer = (state, action) => {
@@ -26,10 +34,7 @@ const filter_reducer = (state, action) => {
 				filtered_movies: [...action.payload],
 			};
 		case SET_VIEW:
-			// boolean from string
-			let view = action.payload;
-			view = view === 'true';
-			return { ...state, list_view: view };
+			return { ...state, view: action.payload };
 		// ================================
 		// SORT
 		// ===============================
@@ -70,10 +75,8 @@ const filter_reducer = (state, action) => {
 			} = state;
 			let filtered = [...all_movies]; // reset template
 			// handle rendered provider
-			if (provider !== 'all') {
-				filtered = filtered.filter(
-					item => item.provider === provider.toUpperCase()
-				);
+			if (provider !== ALL) {
+				filtered = filtered.filter(item => item.provider === provider);
 			}
 			// handle filters
 			if (favourite) {

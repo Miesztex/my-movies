@@ -13,6 +13,7 @@ import {
 	DropdownToggle,
 } from 'reactstrap';
 
+import { YOUTUBE, VIMEO, ALL } from '../context/variables';
 import { useFilterContext } from '../context/filter_context';
 
 const NavbarComponent = () => {
@@ -40,7 +41,7 @@ const NavbarComponent = () => {
 								<Link
 									to='/movies/all'
 									onClick={() => {
-										updateProvider('all');
+										updateProvider(ALL);
 									}}>
 									Movies
 								</Link>
@@ -50,7 +51,7 @@ const NavbarComponent = () => {
 									<Link
 										to='/movies/youtube'
 										onClick={() => {
-											updateProvider('youtube');
+											updateProvider(YOUTUBE);
 										}}>
 										YouTube
 									</Link>
@@ -59,7 +60,7 @@ const NavbarComponent = () => {
 									<Link
 										to='/movies/vimeo'
 										onClick={() => {
-											updateProvider('vimeo');
+											updateProvider(VIMEO);
 										}}>
 										Vimeo
 									</Link>

@@ -14,7 +14,7 @@ import {
 	UPDATE_CURRENT_MOVIE,
 	SET_MODAL,
 } from './actions';
-import { NAME_AZ } from './variables';
+import { NAME_AZ, TILES_VIEW, ALL } from './variables';
 import reducer from './filter_reducer';
 import { useMoviesContext } from './movies_context';
 
@@ -23,12 +23,12 @@ const initialState = {
 	all_movies: [], // movies to render
 	filtered_movies: [],
 	pages: [],
-	list_view: false, // filters & sorts
+	view: TILES_VIEW, // filters & sorts
 	sort: NAME_AZ,
 	filters: { fav: false },
 	modal_open: false, // movie player info
 	current_movie: null,
-	provider: '', // pagination
+	provider: ALL, // pagination
 	pagination: 1,
 	per_page: 5,
 };

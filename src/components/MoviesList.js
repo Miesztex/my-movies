@@ -3,6 +3,7 @@ import { useParams } from 'react-router';
 
 import { useFilterContext } from '../context/filter_context';
 import { useMoviesContext } from '../context/movies_context';
+import { TILES_VIEW } from '../context/variables';
 
 import TilesView from './TilesView';
 import ListView from './ListView';
@@ -10,9 +11,9 @@ import ListView from './ListView';
 const MoviesList = () => {
 	const {
 		filtered_movies: movies,
-		list_view,
 		updateProvider,
 		pages,
+		view,
 		pagination,
 		updateCurrentMovie,
 	} = useFilterContext();
@@ -21,9 +22,10 @@ const MoviesList = () => {
 
 	// set currently rendered page from param to state
 	const { provider } = useParams();
+	const varProvider = provider.toUpperCase();
 	//updates provider on every param change
 	useEffect(() => {
-		updateProvider(provider);
+		updateProvider(varProvider);
 		// eslint-disable-next-line
 	}, [provider]);
 
@@ -37,7 +39,7 @@ const MoviesList = () => {
 	}
 
 	// view switch
-	if (!list_view) {
+	if (view === TILES_VIEW) {
 		return (
 			<TilesView
 				movies={currentPageItems}
