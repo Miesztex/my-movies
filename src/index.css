@@ -85,9 +85,15 @@ COLLAPSE
 }
 
 .input-group-text {
-  width: 7rem;
+  width: 5rem;
   display: flex;
   justify-content: center;
+}
+
+@media only screen and (min-width: 768px) {
+  .input-group-text {
+    width: 8rem;
+  }
 }
 
 
