@@ -2,7 +2,6 @@ import React, { useEffect } from 'react';
 import { useParams } from 'react-router';
 
 import { useFilterContext } from '../context/filter_context';
-import { useMoviesContext } from '../context/movies_context';
 import { TILES_VIEW } from '../context/variables';
 
 import TilesView from './TilesView';
@@ -17,8 +16,6 @@ const MoviesList = () => {
 		pagination,
 		updateCurrentMovie,
 	} = useFilterContext();
-
-	const { toggleFavourites, removeMovie } = useMoviesContext();
 
 	// set currently rendered page from param to state
 	const { provider } = useParams();
@@ -43,8 +40,6 @@ const MoviesList = () => {
 		return (
 			<TilesView
 				movies={currentPageItems}
-				toggleFavourites={toggleFavourites}
-				removeMovie={removeMovie}
 				updateCurrentMovie={updateCurrentMovie}
 			/>
 		);
@@ -52,8 +47,6 @@ const MoviesList = () => {
 	return (
 		<ListView
 			movies={currentPageItems}
-			toggleFavourites={toggleFavourites}
-			removeMovie={removeMovie}
 			updateCurrentMovie={updateCurrentMovie}
 		/>
 	);

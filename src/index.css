@@ -84,6 +84,14 @@ COLLAPSE
   }
 }
 
+.input-group-text {
+  width: 7rem;
+  display: flex;
+  justify-content: center;
+}
+
+
+
 .collapse-container {
   max-width: var(--breakpoint-md);
   margin: 0 auto;
@@ -144,9 +152,19 @@ TILES(GRID) VIEW
   justify-content: center;
   align-items: center;
   height: 100%;
+  margin-bottom: 0;
+}
+
+.tile-btn-container button {
+  min-width: 4rem;
 }
 
 
+/* 
+==========================
+MOVIE THUMBAIL
+==========================
+*/
 .movieImg-backdrop {
   position: relative;
   overflow: hidden;
@@ -192,7 +210,7 @@ LIST VIEW
   width: 100%;
 }
 
-.list-btns button {
+.list-btn-container button {
   margin-right: .5rem;
 }
 
@@ -203,7 +221,7 @@ LIST VIEW
     justify-content: space-between;
   }
 
-  .list-btns {
+  .list-btn-container {
     display: flex;
     flex-direction: column;
 
@@ -211,12 +229,12 @@ LIST VIEW
 
   }
 
-  .list-btns button {
+  .list-btn-container button {
     width: 100%;
     margin-bottom: .3rem;
   }
 
-  .list-btns li {
+  .list-btn-container li {
     width: 100%;
   }
 
