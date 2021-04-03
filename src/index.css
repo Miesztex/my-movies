@@ -96,8 +96,6 @@ COLLAPSE
   }
 }
 
-
-
 .collapse-container {
   max-width: var(--breakpoint-md);
   margin: 0 auto;
@@ -164,7 +162,6 @@ TILES(GRID) VIEW
 .tile-btn-container button {
   min-width: 4rem;
 }
-
 
 /* 
 ==========================
