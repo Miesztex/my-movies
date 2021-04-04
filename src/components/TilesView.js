@@ -19,22 +19,24 @@ const TilesView = props => {
 	const { movies, updateCurrentMovie } = props;
 
 	const movieThumbail = ({ item, imageUrl, title }) => (
-		<div
-			className='movieImg-backdrop'
-			onClick={() => {
-				updateCurrentMovie(item);
-			}}>
-			<CardImg
-				top
-				width='100%'
-				src={imageUrl}
-				alt={title}
+		<div className='movieImg-container'>
+			<div
+				className='movieImg-backdrop'
 				onClick={() => {
 					updateCurrentMovie(item);
-				}}
-				className='movieImg-img'
-			/>
-			<FaPlay className='movieImg-icon' />
+				}}>
+				<CardImg
+					top
+					width='100%'
+					src={imageUrl}
+					alt={title}
+					onClick={() => {
+						updateCurrentMovie(item);
+					}}
+					className='movieImg-img'
+				/>
+				<FaPlay className='movieImg-icon' />
+			</div>
 		</div>
 	);
 
